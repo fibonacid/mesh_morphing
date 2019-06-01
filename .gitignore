@@ -23,12 +23,12 @@ web-export/
 
 # Some specific to my workflow
 out/
-*.jpg
-*.JPG
-*.tiff
-*.tif
-*.TIFF
-*.png
-*.PNG
+#*.jpg
+#*.JPG
+#*.tiff
+#*.tif
+#*.TIFF
+#*.png
+#*.PNG
 *.mov
 *.MOV
