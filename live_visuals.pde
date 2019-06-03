@@ -8,13 +8,12 @@
 NoisySphere noisySphere;
 
 void setup() {
-  size(500,500, P3D);
+  size(960,720, P3D);
   
   noisySphere = new NoisySphere();
 }
 
-void draw() {
-  
+void draw() {  
   background(0);
   
   pointLight(255, 255, 255, width/2, height/2, 500);
