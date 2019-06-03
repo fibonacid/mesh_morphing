@@ -26,7 +26,7 @@ class NoisySphere {
    }
    
    void update() {
-     shader.set("u_time", millis()*0.001;);
+     shader.set("u_time", millis()*0.001);
    }
    
    void display() {
