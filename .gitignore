@@ -1,4 +1,4 @@
-# Java generated files          
+# Java generated files
 *.class
 *.java
 
@@ -20,6 +20,7 @@ applet
 application.macosx
 build-tmp/
 web-export/
+*.autosave
 
 # Some specific to my workflow
 out/
