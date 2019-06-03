@@ -16,14 +16,17 @@ class NoisySphere {
    }
    
    void init() {
+     // Initialize Shader
      shader = loadShader("shaders/noisy-frag.glsl", "shaders/noisy-vert.glsl");
+     shader.set("u_noise_amnt", 1.0);
+     // Initialize Shape
      sphere = createShape(SPHERE, size);
      sphere.setTexture(loadImage("textures/marble.jpg"));
      sphere.setStroke(false);
    }
    
    void update() {
-     shader.set("u_time", millis()*0.0001);
+     shader.set("u_time", millis()*0.001;);
    }
    
    void display() {

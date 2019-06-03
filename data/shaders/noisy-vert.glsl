@@ -5,6 +5,7 @@ uniform mat4 texMatrix;
 
 uniform vec4 lightPosition;
 uniform float u_time;
+uniform float u_noise_amnt;
 
 attribute vec4 position;
 attribute vec4 color;
@@ -99,9 +100,9 @@ float cnoise(vec3 P)
 
 void main() {
 
-  float displacement = cnoise( normal.xyz + u_time ) - 0.5;
+  float displacement = 25.0 * (cnoise( normal.xyz + u_time ) - 0.5);
 
-  gl_Position = transform * position + 50.0 * displacement;
+  gl_Position = transform * position + u_noise_amnt * displacement;
 
   vec3 ecPosition = vec3(modelview * position);
 
