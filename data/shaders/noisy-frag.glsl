@@ -4,8 +4,9 @@ precision mediump int;
 #endif
 
 uniform sampler2D texture;
+uniform float u_time;
 
-varying vec4 vertColor;
+varying vec4 vertColor; // processing fill() color
 varying vec3 ecNormal;
 varying vec3 lightDir;
 varying vec4 vertTexCoord;
