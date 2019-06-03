@@ -99,13 +99,13 @@ float cnoise(vec3 P)
 
 void main() {
 
-  float displacement = 16.0 * cnoise( 0.02 * position.xyz + u_time );
+  float displacement = cnoise( position.xyz + u_time ) - 0.5;
 
-  gl_Position = transform * position;
+  gl_Position = transform * position + 50.0 * displacement;
 
   vec3 ecPosition = vec3(modelview * position);
 
-  ecNormal = normalize(normalMatrix * normal * displacement);
+  ecNormal = normalize(normalMatrix * normal);
   lightDir = normalize(lightPosition.xyz - ecPosition);
   vertColor = color;
 
