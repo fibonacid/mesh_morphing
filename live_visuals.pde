@@ -14,17 +14,21 @@ void setup() {
   noiseShader = loadShader("shaders/noise_frag.glsl", "shaders/noise_vert.glsl");
   box = createShape(SPHERE,100);
   box.setTexture(loadImage("textures/marble.jpg"));
+  box.setStroke(false);
 }
 
 void draw() {
+  
   background(0);
   
   shader(noiseShader);
+  
+  pointLight(255, 255, 0, width/2, height/2, 200+sin(millis()*0.001)*200);
    
   pushMatrix();
   translate(width/2.0, height/2.0);
   rotateY(radians(frameCount));
-  fill(0,255,0);
   shape(box);
+  
   popMatrix();
 }
