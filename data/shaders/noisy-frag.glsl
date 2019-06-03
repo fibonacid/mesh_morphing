@@ -23,11 +23,13 @@ precision mediump int;
 uniform sampler2D texture;
 
 uniform vec2 texOffset;
+uniform float u_time;
 
 varying vec4 vertColor;
 varying vec4 backVertColor;
 varying vec4 vertTexCoord;
 
 void main() {
+
   gl_FragColor = texture2D(texture, vertTexCoord.st) * (gl_FrontFacing ? vertColor : backVertColor);
 }
