@@ -6,6 +6,8 @@ class NoisySphere {
    PShader shader;
    float size;
    
+   Line noiseAmntLine, noiseFreqLine;
+   
    NoisySphere() { this(width/2.0, height/2.0, 0.0); }
   
    NoisySphere(float x, float y, float z) {
@@ -25,10 +27,14 @@ class NoisySphere {
    sphere.setTexture(loadImage("textures/marble.jpg"));
    sphere.setStroke(false);
    // GUI Bindings 
+   noiseAmntLine = new Line();
+   noiseFreqLine = new Line();
  }
  
  void update() {
    shader.set("u_time", millis()*0.001);
+   shader.set("u_noise_amnt", noiseAmntLine.value); 
+   shader.set("u_noise_freq", noiseFreqLine.value); 
  }
  
  void display() {
@@ -50,6 +56,11 @@ class NoisySphere {
    resetShader();
  }
    
-   void setNoiseAmount(float value)    { shader.set("u_noise_amnt", value); }
-   void setNoiseFrequency(float value) { shader.set("u_noise_freq", value); }
+ void setNoiseAmount(float value)    { 
+   noiseAmntLine.to(value);
+ }
+ 
+ void setNoiseFrequency(float value) {
+   noiseFreqLine.to(value);
+ }
 }
