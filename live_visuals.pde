@@ -17,7 +17,9 @@ void draw() {
   
   background(0);
   
-  noisySphere.rotation.x += 0.01;
+  pointLight(255, 255, 255, width/2, height/2, 500);
+  
+  noisySphere.rotation.x += 0.001;
   
   noisySphere.update();
   noisySphere.display();
