@@ -15,33 +15,41 @@ class NoisySphere {
      init();
    }
    
-   void init() {
-     // Initialize Shader
-     shader = loadShader("shaders/noisy-frag.glsl", "shaders/noisy-vert.glsl");
-     shader.set("u_noise_amnt", 1.0);
-     // Initialize Shape
-     sphere = createShape(SPHERE, size);
-     sphere.setTexture(loadImage("textures/marble.jpg"));
-     sphere.setStroke(false);
-   }
+ void init() {
+   // Initialize Shader
+   shader = loadShader("shaders/noisy-frag.glsl", "shaders/noisy-vert.glsl");
+   shader.set("u_noise_amnt", 0.5);
+   shader.set("u_noise_freq", 0.0);
+   // Initialize Shape
+   sphere = createShape(SPHERE, size);
+   sphere.setTexture(loadImage("textures/marble.jpg"));
+   sphere.setStroke(false);
+   // GUI Bindings 
+ }
+ 
+ void update() {
+   shader.set("u_time", millis()*0.001);
+ }
+ 
+ void display() {
+      
+   shader(shader);
    
-   void update() {
-     shader.set("u_time", millis()*0.001);
-   }
+   pushMatrix();
+     
+   translate(position.x, position.y, position.z);
    
-   void display() {
-     shader(shader);
-     
-     pushMatrix();
-     
-     translate(position.x, position.y, position.z);
-     
-     rotateX(rotation.x);
-     rotateY(rotation.y);
-     rotateZ(rotation.z);
-     
-     shape(sphere);
-     
-     popMatrix();
-   }
+   rotateX(rotation.x);
+   rotateY(rotation.y);
+   rotateZ(rotation.z);
+   
+   shape(sphere);
+   
+   popMatrix();
+   
+   resetShader();
+ }
+   
+   void setNoiseAmount(float value)    { shader.set("u_noise_amnt", value); }
+   void setNoiseFrequency(float value) { shader.set("u_noise_freq", value); }
 }
