@@ -99,7 +99,7 @@ float cnoise(vec3 P)
 
 void main() {
 
-  float displacement = cnoise( position.xyz + u_time ) - 0.5;
+  float displacement = cnoise( normal.xyz + u_time ) - 0.5;
 
   gl_Position = transform * position + 50.0 * displacement;
 
