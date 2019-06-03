@@ -1,6 +1,7 @@
-void noise_amount(float value) {
- println("noise_amount:", value);
- noisySphere.setNoiseAmount(value);
+Line line = new Line();
+
+void noise_amount(float input) {
+ line.to(input, 1000);
 }
 
 void noise_frequency(float value) {
