@@ -1,9 +1,9 @@
 class NoisySphere {
    
-   private PVector position;
-   private PVector rotation;
-   private PShape sphere;
-   private PShader shader;
+   PVector position;
+   PVector rotation;
+   PShape sphere;
+   PShader shader;
    float size;
    
    NoisySphere() { this(width/2.0, height/2.0, 0.0); }
@@ -19,28 +19,26 @@ class NoisySphere {
      shader = loadShader("shaders/noisy-frag.glsl", "shaders/noisy-vert.glsl");
      sphere = createShape(SPHERE, size);
      sphere.setTexture(loadImage("textures/marble.jpg"));
-     sphere.setStroke(false);
+     sphere.setStroke(true);
    }
    
    void update() {
-     
+     shader.set("u_time", millis()*0.001);
    }
    
    void display() {
      shader(shader);
+     
      pushMatrix();
+     
      translate(position.x, position.y, position.z);
+     
+     rotateX(rotation.x);
+     rotateY(rotation.y);
+     rotateZ(rotation.z);
+     
      shape(sphere);
+     
      popMatrix();
    }
-      
-   /** GETTERS AND SETTERS */
-   
-   void setPosition(PVector position) { this.position = position; }
-   void setRotation(PVector rotation) { this.rotation = rotation; }
-   void setSize(float size)           { this.size     = size;     }
-
-   PVector getPosition() { return this.position; }
-   PVector getRotation() { return this.rotation; }
-   float   getSize()     { return this.size;   }
 }
