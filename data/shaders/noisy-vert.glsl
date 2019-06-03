@@ -52,6 +52,9 @@ const float zero_float = 0.0;
 const float one_float = 1.0;
 const vec3 zero_vec3 = vec3(0);
 
+/* ====================================================
+ *                   PERLIN NOISE
+ * ==================================================== */
 vec3 mod289(vec3 x)
 {
   return x - floor(x * (1.0 / 289.0)) * 289.0;
@@ -132,6 +135,10 @@ float cnoise(vec3 P)
   float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x);
   return 2.2 * n_xyz;
 }
+
+/* ====================================================
+ *                   LIGHTS
+ * ==================================================== */
 
 float falloffFactor(vec3 lightPos, vec3 vertPos, vec3 coeff) {
   vec3 lpv = lightPos - vertPos;
