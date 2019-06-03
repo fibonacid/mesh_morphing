@@ -19,11 +19,11 @@ class NoisySphere {
      shader = loadShader("shaders/noisy-frag.glsl", "shaders/noisy-vert.glsl");
      sphere = createShape(SPHERE, size);
      sphere.setTexture(loadImage("textures/marble.jpg"));
-     sphere.setStroke(true);
+     sphere.setStroke(false);
    }
    
    void update() {
-     shader.set("u_time", millis()*0.001);
+     shader.set("u_time", millis()*0.0001);
    }
    
    void display() {
