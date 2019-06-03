@@ -14,6 +14,7 @@ void setup() {
   size(960,720, P3D);
   
   cp5 = new ControlP5(this);
+  cp5.setAutoDraw(false);
   cp5.addSlider("noise_amount").setRange(0.0, 1.0).linebreak();
   cp5.addSlider("noise_frequency").setRange(0.0, 1.0);
   
@@ -22,11 +23,17 @@ void setup() {
 
 void draw() {
 
-  background(0);  
-  pointLight(255, 255, 255, width/2, height/2, 500);
-
+  background(0); 
+  
+  camera(width/2, width/2, 1000, width/2, height/2, 1, 0, 1, 0);
+  
+  ambientLight(0, 20, 10);
+  spotLight(255, 50, 50, mouseX, mouseY, 1000, 0, 0, -1, PI/16, 1);
+  
   noisySphere.rotation.x += 0.005;
   
   noisySphere.update();
   noisySphere.display();
+
+  cp5.draw();
 }
