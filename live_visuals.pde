@@ -2,7 +2,7 @@
  *  author:        Lorenzo Rivosecchi
  *  title:         live_visuals
  *  description:   A sketch to make interactive visuals
- *  version:       0.0.0
+ *  version:       0.0.1
  *  ------------------------------------------------------ */
 
 PShader noiseShader;
@@ -23,8 +23,8 @@ void draw() {
   
   shader(noiseShader);
   
-  pointLight(255, 255, 0, width/2, height/2, 200+sin(millis()*0.001)*200);
-   
+  pointLight(255, 255, 255, width/2, height/2, 500);  
+    
   pushMatrix();
   translate(width/2.0, height/2.0);
   rotateY(radians(frameCount));
