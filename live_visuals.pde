@@ -1,3 +1,4 @@
+import themidibus.*;
 import controlP5.*;
 
 /** ------------------------------------------------------
@@ -7,49 +8,34 @@ import controlP5.*;
  *  version:       0.0.7
  *  ------------------------------------------------------ */
 
+MidiBus midibus;
+
 NoisySphere noisySphere;
 ControlP5 cp5;
-OrbitingLamp spotlight;
-OrbitingCamera camera;
+OrbitingLamp orbitingLight;
 
 void setup() {
   size(960,720, P3D);
   
-  cp5 = new ControlP5(this);
-  cp5.setAutoDraw(false);
-  cp5.addSlider("noise_amount").setRange(0.0, 1.0).linebreak();
-  cp5.addSlider("noise_frequency").setRange(0.0, 1.0);
-  
+  midibus = new MidiBus(this, 0, 0);
+  MidiBus.list();
+
   noisySphere = new NoisySphere(width/2.0, height/2.0, 0);
-  spotlight = new OrbitingLamp();
-  camera = new OrbitingCamera();
+  orbitingLight = new OrbitingLamp(#ff0000); // red
 }
 
 void draw() {
 
   background(0); 
   
-  ortho();
+  ambientLight(150,150,150);
+  camera();
   
-  camera.display();
-  
-  lights();
-  //camera(width/2, height/2, 1000, width/2, height/2, 0, -1, 0, 0);
-  
-  //ambientLight(200, 200, 200);
-
-  //spotLight(255, 255, 255, width/2, height/2, 500, 0, 0, -1, PI/4, 1);
- 
-  
-  spotlight.display();
+  orbitingLight.move();
+  orbitingLight.apply();
   
   //noisySphere.rotation.x += 0.005;
-  
-  fill(0,255, 0);
-  //rect(40, 40, width-40, height-40);
-  
+
   noisySphere.update();
   noisySphere.display();
-
-  //cp5.draw();
 }
