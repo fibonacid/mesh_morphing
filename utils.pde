@@ -127,6 +127,7 @@ class AudioIndicator {
   }
   
   void display() {
+    float level = loudness.analyze();
     pushStyle();
     stroke(255);
     noFill();
@@ -136,8 +137,10 @@ class AudioIndicator {
     for(int i = 1; i <= barTicks; i++) {
       noStroke();
       float amnt = pow((i+1)/float(barTicks), 2);
-      fill(lerpColor(#1BE341,#E31B1B, amnt));
-      rect(width-2*w, height - w - h*i,w,h); 
+      if (level >= amnt) {
+         fill(lerpColor(#1BE341,#E31B1B, amnt));
+         rect(width-2*w, height - w - h*i,w,h);  
+      }
     }
     popStyle();
   }
