@@ -55,8 +55,8 @@ void draw() {
 
   background(0); 
   
-  ambientLight(50,50,50);
   camera();
+  spotLight(160,160,160, width/2, height/2, 1000, 0, 0, -1, PI/8, 1);
   
   if (webcam.available() == true) {
     webcam.read();
@@ -67,8 +67,24 @@ void draw() {
     light.apply(); 
   }
   
-  //noisySphere.rotation.x += 0.005;
+  noisySphere.rotation.y += 0.005;
   noisySphere.setTexture(webcam);
   noisySphere.update();
   noisySphere.display();
+  
+  hint(DISABLE_DEPTH_TEST);
+  camera();
+  noLights();
+  // 2D code
+  showFramerate();
+  hint(ENABLE_DEPTH_TEST);
+  
+}
+
+void showFramerate() {
+  pushStyle();
+  fill(255);
+  textSize(15);
+  text(int(frameRate)+" FPS", 15, height - 30, width -15, height - 30);
+  popStyle();
 }
