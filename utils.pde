@@ -111,3 +111,34 @@ PVector sphericalToCartesian(PVector rtp, PVector xyz, PVector origin) {
   xyz.z = rtp.x * cos(rtp.z) + oz;
   return xyz;
 }
+
+/**
+ *
+ */
+class AudioIndicator {
+  
+  Amplitude amp;
+  int barTicks = 16;
+  float barHeight = 100;
+  float barWidth = 10;
+  
+  AudioIndicator(Amplitude amp) {
+    this.amp = amp;
+  }
+  
+  void display() {
+    pushStyle();
+    stroke(255);
+    noFill();
+    float h = barHeight / barTicks;
+    float w = barWidth;
+    rect(width-2*w, height - w - barHeight,w,barHeight); 
+    for(int i = 1; i < barTicks; i++) {
+      noStroke();
+      float amnt = pow((i+1)/float(barTicks), 2);
+      fill(lerpColor(#1BE341,#E31B1B, amnt));
+      rect(width-2*w, height - w - h*i,w,h); 
+    }
+    popStyle();
+  }
+}

@@ -1,3 +1,4 @@
+import processing.sound.*;
 import processing.video.*;
 import themidibus.*;
 import controlP5.*;
@@ -10,18 +11,22 @@ import controlP5.*;
  *  ------------------------------------------------------ */
 
 MidiBus midibus;
+Capture webcam;
+AudioIn input;
+Amplitude loudness;
+AudioIndicator audioIndicator;
 
 NoisySphere noisySphere;
 ControlP5 cp5;
 OrbitingLamp[] lights;
-Capture webcam;
 
 void setup() {
   size(960,720, P3D);
   
   midibus = new MidiBus(this, 0, 0);
   MidiBus.list();
-  
+
+  // Initialize Webcam
   String[] cameras = Capture.list();
   if (cameras == null) {
     println("Failed to retrieve the list of available cameras, will try the default...");
@@ -42,7 +47,17 @@ void setup() {
     // Start capturing the images from the camera
     webcam.start();
   }
-
+  
+  // Initialize Audio Input
+  input = new AudioIn(this, 0);
+  input.start();
+  // Create a new Amplitude analyzer
+  loudness = new Amplitude(this);
+  // Patch the input to the volume analyzer
+  loudness.input(input);
+  audioIndicator = new AudioIndicator(loudness);
+  
+  // Create scene elements
   noisySphere = new NoisySphere(width/2.0, height/2.0, 0);
   lights = new OrbitingLamp[4];
   for(int i=0; i < lights.length; i++) {
@@ -77,6 +92,7 @@ void draw() {
   noLights();
   // 2D code
   showFramerate();
+  audioIndicator.display();
   hint(ENABLE_DEPTH_TEST);
   
 }
