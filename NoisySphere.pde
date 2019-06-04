@@ -29,7 +29,7 @@ class NoisySphere {
    // GUI Bindings 
    noiseAmntLine = new Line();
    noiseFreqLine = new Line();
-   setNoiseAmount(1.0);
+   setNoiseAmount(0.6);
  }
  
  void update() {
