@@ -9,10 +9,10 @@ abstract class Orbiter {
    protected PVector polarSpeed;
   
    Orbiter() {
-     polarSpeed = new PVector(0, 0.02, 0.01);
-     carthesianPosition = new PVector(width/2, height/2, 5000);
+     polarSpeed = new PVector(0, random(0.01), random(0.01));
+     carthesianPosition = new PVector(width/2, height/2, 1000);
      origin = new PVector(width/2, height/2, 0);
-     polarPosition = new PVector(5000, 0, random(0,PI));
+     polarPosition = new PVector(1000, 0, random(0,PI));
    }
    
    void move() {
@@ -46,8 +46,8 @@ class OrbitingLamp extends Orbiter {
         carthesianPosition.x,  // x position
         carthesianPosition.y,  // y position
         carthesianPosition.z,  // z position
-        0, -1, -1,             // directions
-        PI/8,                  // cone angle
+        0, 0, -1,             // directions
+        PI/24,                  // cone angle
         1                      // density
       );
    }
@@ -69,7 +69,7 @@ class OrbitingCamera extends Orbiter {
      camera(
         carthesianPosition.x, 
         carthesianPosition.y,
-        (height/2) / tan(PI/6), //carthesianPosition.z,
+        (height/2) / tan(PI/24), //carthesianPosition.z,
         origin.x,
         origin.y,
         origin.z,
