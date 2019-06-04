@@ -4,12 +4,13 @@ import controlP5.*;
  *  author:        Lorenzo Rivosecchi
  *  title:         live_visuals
  *  description:   A sketch to make interactive visuals
- *  version:       0.0.6
+ *  version:       0.0.7
  *  ------------------------------------------------------ */
 
 NoisySphere noisySphere;
 ControlP5 cp5;
-OrbitingLamp spotlight; 
+OrbitingLamp spotlight;
+OrbitingCamera camera;
 
 void setup() {
   size(960,720, P3D);
@@ -21,25 +22,25 @@ void setup() {
   
   noisySphere = new NoisySphere(width/2.0, height/2.0, 0);
   spotlight = new OrbitingLamp();
+  camera = new OrbitingCamera();
 }
 
 void draw() {
 
   background(0); 
   
-  //camera(width/2, width/2, 1000, width/2, height/2, 1, 0, 1, 0);
+  camera.display();
   
-  ambientLight(100, 100, 100);
+  ambientLight(100, 50, 50);
 
-  //spotLight(255, 255, 255, 20, 20, 1000, 0, 0, -1, PI/64, 1); // Make GUI visible
+  spotLight(255, 255, 255, 20, 20, 1000, 0, 0, -1, PI/64, 1); // Make GUI visible
   
-  spotlight.move();
   spotlight.display();
   
-  noisySphere.rotation.x += 0.005;
+  //noisySphere.rotation.x += 0.005;
   
   noisySphere.update();
   noisySphere.display();
 
-  cp5.draw();
+  //cp5.draw();
 }

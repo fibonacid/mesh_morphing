@@ -9,8 +9,9 @@ abstract class Orbiter {
    PVector polarSpeed;
   
    Orbiter() {
-     polarSpeed = new PVector(0, 0.01, 0.01);
+     polarSpeed = new PVector(0, random(0.05), random(0.05));
      carthesianPosition = new PVector(width/2, height/2, 1000);
+     origin = new PVector(width/2, height/2, 0);
      polarPosition = new PVector(1000, 0, 0);
    }
    
@@ -38,6 +39,7 @@ class OrbitingLamp extends Orbiter {
    }
   
    void display() {
+     move();
      spotLight(
         red(lightColor), 
         green(lightColor), 
@@ -51,5 +53,33 @@ class OrbitingLamp extends Orbiter {
         PI/8, 
         1
      );
+   }
+}
+
+/**
+ *
+ */
+class OrbitingCamera extends Orbiter {
+   
+   OrbitingCamera() {
+      polarSpeed.y = 0.001;
+      polarSpeed.z = 0.02;
+   }
+  
+   void display() {
+     move();
+     polarPosition.x = 0.5 + 0.5 * sin(millis()*0.0001) * 1000 + 500;
+     camera(
+        carthesianPosition.x, 
+        carthesianPosition.y,
+        carthesianPosition.z,
+        origin.x,
+        origin.y,
+        origin.z,
+        0.0,
+        -1.0,
+        0.0
+     );
+     perspective();
    }
 }
