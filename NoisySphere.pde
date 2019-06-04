@@ -56,6 +56,10 @@ class NoisySphere {
    
    resetShader();
  }
+ 
+ void setTexture(PImage image) {
+   sphere.setTexture(image);
+ }
    
  void setNoiseAmount(float value)    { 
    noiseAmntLine.to(value, 100);
