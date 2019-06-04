@@ -58,10 +58,10 @@ class NoisySphere {
  }
    
  void setNoiseAmount(float value)    { 
-   noiseAmntLine.to(value, 10000);
+   noiseAmntLine.to(value, 100);
  }
  
  void setNoiseFrequency(float value) {
-   noiseFreqLine.to(value, 10000);
+   noiseFreqLine.to(value, 100);
  }
 }
