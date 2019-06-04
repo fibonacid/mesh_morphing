@@ -3,16 +3,16 @@
  */
 abstract class Orbiter {
   
-   PVector origin;
-   PVector polarPosition;
-   PVector carthesianPosition;
-   PVector polarSpeed;
+   protected PVector origin;
+   protected PVector polarPosition;
+   protected PVector carthesianPosition;
+   protected PVector polarSpeed;
   
    Orbiter() {
-     polarSpeed = new PVector(0, random(0.05), random(0.05));
-     carthesianPosition = new PVector(width/2, height/2, 1000);
+     polarSpeed = new PVector(0, PI/1024, 0.01);
+     carthesianPosition = new PVector(width/2, height/2, 5000);
      origin = new PVector(width/2, height/2, 0);
-     polarPosition = new PVector(1000, 0, 0);
+     polarPosition = new PVector(5000, 0, PI/2);
    }
    
    void move() {
@@ -31,7 +31,7 @@ class OrbitingLamp extends Orbiter {
   color lightColor;
   
    OrbitingLamp() {
-     this(color(255,0,0));
+     this(color(255));
    }  
   
    OrbitingLamp(color lightColor) {
@@ -39,20 +39,13 @@ class OrbitingLamp extends Orbiter {
    }
   
    void display() {
-     move();
-     spotLight(
-        red(lightColor), 
-        green(lightColor), 
-        blue(lightColor),
-        carthesianPosition.x, 
-        carthesianPosition.y,
-        carthesianPosition.z, 
-        0, 
-        -1, 
-        -1, 
-        PI/8, 
-        1
-     );
+     move();    
+     pushMatrix();
+     translate(carthesianPosition.x, carthesianPosition.y, carthesianPosition.z * 0.25);
+     fill(255, 0, 0);
+     sphere(100);
+     spotLight(red(lightColor), green(lightColor), blue(lightColor), 0, 0, 0, 0, 0, -1, PI/2, 1);
+     popMatrix();
    }
 }
 
@@ -62,24 +55,24 @@ class OrbitingLamp extends Orbiter {
 class OrbitingCamera extends Orbiter {
    
    OrbitingCamera() {
-      polarSpeed.y = 0.001;
-      polarSpeed.z = 0.02;
+      //polarSpeed.y = 0.001;
+      //polarSpeed.z = 0.02;
    }
   
    void display() {
-     move();
-     polarPosition.x = 0.5 + 0.5 * sin(millis()*0.0001) * 1000 + 500;
+     //move();
+     //polarPosition.x = 0.5 + 0.5 * sin(millis()*0.0001) * 1000 + 500;
      camera(
         carthesianPosition.x, 
         carthesianPosition.y,
-        carthesianPosition.z,
+        (height/2) / tan(PI/6), //carthesianPosition.z,
         origin.x,
         origin.y,
         origin.z,
         0.0,
-        -1.0,
+        1.0,
         0.0
      );
-     perspective();
+     //perspective();
    }
 }

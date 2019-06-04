@@ -29,15 +29,24 @@ void draw() {
 
   background(0); 
   
+  ortho();
+  
   camera.display();
   
-  ambientLight(100, 50, 50);
+  lights();
+  //camera(width/2, height/2, 1000, width/2, height/2, 0, -1, 0, 0);
+  
+  //ambientLight(200, 200, 200);
 
-  spotLight(255, 255, 255, 20, 20, 1000, 0, 0, -1, PI/64, 1); // Make GUI visible
+  //spotLight(255, 255, 255, width/2, height/2, 500, 0, 0, -1, PI/4, 1);
+ 
   
   spotlight.display();
   
   //noisySphere.rotation.x += 0.005;
+  
+  fill(0,255, 0);
+  //rect(40, 40, width-40, height-40);
   
   noisySphere.update();
   noisySphere.display();
