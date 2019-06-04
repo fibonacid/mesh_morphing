@@ -133,7 +133,7 @@ class AudioIndicator {
     float h = barHeight / barTicks;
     float w = barWidth;
     rect(width-2*w, height - w - barHeight,w,barHeight); 
-    for(int i = 1; i < barTicks; i++) {
+    for(int i = 1; i <= barTicks; i++) {
       noStroke();
       float amnt = pow((i+1)/float(barTicks), 2);
       fill(lerpColor(#1BE341,#E31B1B, amnt));
