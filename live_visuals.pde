@@ -44,12 +44,15 @@ void setup() {
 void draw() {
   
   background(0);
-  
-  ambientLight(255,0,0);
-  
+  directionalLight(255, 255, 255, 0, 0, -1);
+  directionalLight(255, 255, 255, -1, 0, 1);
+    
   sceneClock = millis() * sceneClockSpeed; // set global clock
   
   mesh.update();
   mesh.display();
- 
+
+  camera.beginHUD();
+  showFramerate();
+  camera.endHUD(); // always!
 }
