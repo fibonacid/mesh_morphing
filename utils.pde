@@ -38,7 +38,7 @@ class Line implements Runnable {
           float time = delta();
           if (time <= duration) {
             float angle = (destination - value) / duration;
-            value = value + angle * time; //<>//
+            value = value + angle * time; //<>// //<>//
           } else {
             
           }
@@ -127,7 +127,7 @@ class AudioIndicator {
   }
   
   void display() {
-    float level = loudness.analyze();
+    float level = this.amp.analyze();
     pushStyle();
     stroke(255);
     noFill();
@@ -144,4 +144,15 @@ class AudioIndicator {
     }
     popStyle();
   }
+}
+
+/**
+ *
+ */
+void showFramerate() {
+  pushStyle();
+  fill(255);
+  textSize(15);
+  text(int(frameRate)+" FPS", 15, height - 30, width -15, height - 30);
+  popStyle();
 }

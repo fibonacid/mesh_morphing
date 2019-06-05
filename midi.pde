@@ -3,13 +3,10 @@
  */
 void controllerChange(int channel, int number, int value) {
    //println("MIDI CC"+number+": "+value);
-   
    switch(number) {
       case 1:
-        noise_amount(float(value)/127f);
         break;
       case 2:
-        noise_frequency(float(value)/127f);
         break;
       case 3:
         break;
