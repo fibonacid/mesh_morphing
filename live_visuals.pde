@@ -1,3 +1,4 @@
+import peasy.PeasyCam;
 import processing.sound.*;
 import processing.video.*;
 import themidibus.*;
@@ -19,6 +20,7 @@ int _width_ = 500;
 int _height_ = 500;
 
 // 3D Scene
+PeasyCam camera;
 Mesh mesh;
 
 // Runtime
@@ -33,6 +35,10 @@ void settings() {
 
 void setup() {
   mesh = new Mesh();
+  camera = new PeasyCam(this, mesh.position.x, mesh.position.y, mesh.position.z, 1000);
+  camera.setMinimumDistance(mesh.SIZE*0.5);
+  camera.setMaximumDistance(mesh.SIZE*10.);
+  
 }
 
 void draw() {
