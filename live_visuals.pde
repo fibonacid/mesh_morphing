@@ -22,8 +22,8 @@ int _height_ = 500;
 Mesh mesh;
 
 // Runtime
-float clock = 0;
-float clockSpeed = 0.1;
+float sceneClock = 0;
+float sceneClockSpeed = 0.1;
 
 void settings() {
   loadConfig();
@@ -39,7 +39,7 @@ void draw() {
   
   background(0);
   
-  clock = millis() * clockSpeed; // set global clock
+  sceneClock = millis() * sceneClockSpeed; // set global clock
   
   mesh.update();
   mesh.display();
