@@ -45,6 +45,8 @@ void draw() {
   
   background(0);
   
+  ambientLight(255,0,0);
+  
   sceneClock = millis() * sceneClockSpeed; // set global clock
   
   mesh.update();

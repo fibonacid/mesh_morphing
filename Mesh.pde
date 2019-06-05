@@ -14,7 +14,6 @@ class Mesh {
      shape.setTexture(DEFAULT_TEXTURE);
      
      String[] noise = loadStrings("shaders/cnoise3.glsl");
-     printArray(noise);
    }
    
    void update() {
