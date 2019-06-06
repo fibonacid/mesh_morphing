@@ -200,4 +200,8 @@ class EnvelopeFollower {
     value += (amp  - value) * smoothingFactor;
     return map(value, 0, record, 0, 1);
   } 
+  
+  void setSensitivity(float value) {
+    smoothingFactor = map(value, 0, 1, 0, 0.3);
+  }
 }
