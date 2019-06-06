@@ -38,7 +38,7 @@ class Line implements Runnable {
           float time = delta();
           if (time <= duration) {
             float angle = (destination - value) / duration;
-            value = value + angle * time; //<>// //<>// //<>//
+            value = value + angle * time; //<>// //<>// //<>// //<>//
           } else {
             
           }
@@ -156,4 +156,19 @@ void showFramerate() {
   textSize(15);
   text(int(frameRate)+" FPS", 15, height - 30, width -15, height - 30);
   popStyle();
+}
+
+/**
+ *
+ */
+float smoothLFO(float freq) {
+  if (int(sceneClock) % int(freq) == 0) return 1.0;
+  return 0.0;
+}
+
+/**
+ *
+ */
+float sharpLFO(float freq) {
+  return abs(sin(sceneClock * freq));
 }

@@ -50,7 +50,7 @@ void setup() {
   audioIn = new AudioIn(this, 0);
   audioIn.start();
   audioIndicator = new AudioIndicator(this, audioIn);
-  envf = this.Utils.new EnvelopeFollower(this, audioIn);
+  envf = new EnvelopeFollower(this, audioIn);
   
 }
 
@@ -96,15 +96,4 @@ void createLamps() {
      for(int i = 0; i < lamps.length; i++) {
       lamps[i] = new OrbitingLamp(mesh.position, color(255,0,0));
     }
-}
-
-/**
- *
- */
-void showFramerate() {
-  pushStyle();
-  fill(255);
-  textSize(15);
-  text(int(frameRate)+" FPS", 15, height - 30, width -15, height - 30);
-  popStyle();
 }

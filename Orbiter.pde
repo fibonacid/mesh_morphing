@@ -47,7 +47,7 @@ class OrbitingLamp extends Orbiter {
    }
       
    void update() {
-     this.currentColor = lerpColor(color(0), this.lightColor, stroboLFO(stroboFreq));
+     this.currentColor = lerpColor(color(0), this.lightColor, sharpLFO(stroboFreq));
    }
   
    void apply() {
