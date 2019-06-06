@@ -14,7 +14,8 @@ class Mesh {
    final static int WITH_TEXTURE = 1;
    final static int NO_TEXTURE = 2;
    
-   private final Line vertexNoiseAmount = new Line();
+   private final Line vertexNoiseAmount = new Line(1.0);
+   private final Line vertexNoiseSpeed  = new Line(0.5);
   
    Mesh() {
      if (_eco_) { sphereDetail(30); }
@@ -27,14 +28,14 @@ class Mesh {
      
      shape.setTexture(DEFAULT_TEXTURE);
      shape.setStroke(false);
-     
-     String[] noise = loadStrings("shaders/cnoise3.glsl");
-     currentShader = TEXLIGHT_SHADER;
+
+     currentShader = LIGHT_SHADER;
    }
    
    void update() {
      currentShader.set("u_time", sceneClock);
-     currentShader.set("u_noise_amount", 1.0);
+     currentShader.set("u_noise_amount", vertexNoiseAmount.value);
+     currentShader.set("u_noise_speed", vertexNoiseSpeed.value);
    }
    
    void rotate() {
@@ -71,8 +72,12 @@ class Mesh {
       }
    }
    
-   void setVertexNoiseAmount(float value) {
-      vertexNoiseAmount.to(value, 100);
+   void setVertexNoiseAmount(float value, float time) {
+      vertexNoiseAmount.to(value, time);
+   }
+   
+   void setVertexNoiseSpeed(float value, float time) {
+      vertexNoiseSpeed.to(value, time);
    }
    
    void scale(float value) {

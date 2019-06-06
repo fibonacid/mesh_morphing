@@ -36,6 +36,7 @@ uniform vec2 lightSpot[8];
 uniform float u_time;
 uniform float u_scale;
 uniform float u_noise_amount;
+uniform float u_noise_speed;
 
 attribute vec4 position;
 attribute vec4 color;
@@ -180,8 +181,10 @@ mat4 scale(float amnt) {
 void main() {
 
   mat4 scaleMatrix = scale(0.5 + 0.5 * u_scale);
-
-  float displacement = 100. * (0.5 + 0.5 * fmb(position.xyz * 0.01 + u_time * 0.001));
+  
+  float noise_time = u_time * u_noise_speed * 0.01;
+  float noise = (0.5 + 0.5 * fmb(position.xyz * 0.01 + noise_time));
+  float displacement = 100. * noise;
   displacement *= u_noise_amount;
 
   // Vertex in clip coordinates
