@@ -13,7 +13,8 @@ class Mesh {
    final static int NO_TEXTURE = 2;
   
    Mesh() {
-     sphereDetail(200);
+     if (_eco_) { sphereDetail(30); }
+     else       { sphereDetail(100);  }   
      shape = createShape(SPHERE, SIZE);
      position = new PVector(width/2, height/2, 0);
      shape.setTexture(DEFAULT_TEXTURE);

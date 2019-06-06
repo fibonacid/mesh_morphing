@@ -18,6 +18,7 @@ JSONObject config;
 boolean _fullscreen_ = false;
 int _width_ = 500;
 int _height_ = 500;
+boolean _eco_ = false;
 
 // 3D Scene
 PeasyCam camera;
