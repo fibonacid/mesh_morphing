@@ -131,7 +131,7 @@ void main() {
   vec4 colorA = vec4(.1, .1, .3, 1.);
   vec4 colorB = vec4(0., 0., 1., 1.);
   vec4 color  = mix(colorA, colorB, smoothstep(0.0, 0.5, noise));
-  color *= brightness;
+  color *= 0.5 + 0.5 * (brightness);
 
   gl_FragColor = vec4(color.rgb, 1.0);
 }
