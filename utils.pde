@@ -11,7 +11,11 @@ class Line implements Runnable {
   Thread ease = new Thread(this);
   
   Line() {
-    this.value = 0;
+     this(0.0); 
+  }
+  
+  Line(float value) {
+    this.value = value;
     ease.start();
   }
   
