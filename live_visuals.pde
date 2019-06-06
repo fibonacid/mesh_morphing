@@ -8,9 +8,9 @@ import controlP5.*;
  *  author:        Lorenzo Rivosecchi
  *  title:         live_visuals
  *  description:   A sketch to make interactive visuals
- *  version:       rebuild
+ *  version:       0.0.9
  *  ------------------------------------------------------ */
- 
+
  // Configuration file
 JSONObject config;
 
@@ -38,17 +38,17 @@ void setup() {
   camera = new PeasyCam(this, mesh.position.x, mesh.position.y, mesh.position.z, 1000);
   camera.setMinimumDistance(mesh.SIZE*0.5);
   camera.setMaximumDistance(mesh.SIZE*10.);
-  
+
 }
 
 void draw() {
-  
+
   background(0);
   directionalLight(255, 255, 255, 0, 0, -1);
   directionalLight(255, 255, 255, -1, 0, 1);
-    
+
   sceneClock = millis() * sceneClockSpeed; // set global clock
-  
+
   mesh.update();
   mesh.display();
 
