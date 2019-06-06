@@ -13,6 +13,8 @@ class Mesh {
    
    final static int WITH_TEXTURE = 1;
    final static int NO_TEXTURE = 2;
+   
+   private final Line vertexNoiseAmount = new Line();
   
    Mesh() {
      if (_eco_) { sphereDetail(30); }
@@ -69,8 +71,8 @@ class Mesh {
       }
    }
    
-   void setNoiseAmount(float value) {
-      currentShader.set("u_noise_amount", value);
+   void setVertexNoiseAmount(float value) {
+      vertexNoiseAmount.to(value, 100);
    }
    
    void scale(float value) {
