@@ -34,6 +34,8 @@ uniform vec3 lightFalloff[8];
 uniform vec2 lightSpot[8];
 
 uniform float u_time;
+uniform float u_scale;
+uniform float u_noise_amount;
 
 attribute vec4 position;
 attribute vec4 color;
@@ -168,12 +170,22 @@ float fmb(in vec3 st) {
   return value;
 }
 
+mat4 scale(float amnt) {
+  return mat4(amnt, 0.0, 0.0, 0.0,  // 1. column
+              0.0, amnt, 0.0, 0.0,  // 2. column
+              0.0, 0.0, amnt, 0.0,  // 3. column
+              0.0, 0.0, 0.0, 1.0);  // 4. column
+}
+
 void main() {
 
+  mat4 scaleMatrix = scale(0.5 + 0.5 * u_scale);
+
   float displacement = 100. * (0.5 + 0.5 * fmb(position.xyz * 0.01 + u_time * 0.001));
+  displacement *= u_noise_amount;
 
   // Vertex in clip coordinates
-  gl_Position = transformMatrix * position + displacement;
+  gl_Position = transformMatrix * position * scaleMatrix + vec4(displacement) * scaleMatrix;
 
   fragPosition = normalize(position + displacement);
 
