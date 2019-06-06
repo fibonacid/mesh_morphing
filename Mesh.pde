@@ -26,6 +26,7 @@ class Mesh {
    
    void update() {
      currentShader.set("u_time", sceneClock);
+     currentShader.set("u_noise_amount", 1.0);
    }
    
    void display() {
@@ -54,5 +55,13 @@ class Mesh {
            currentShader = LIGHT_SHADER;
            break;
       }
+   }
+   
+   void setNoiseAmount(float value) {
+      currentShader.set("u_noise_amount", value);
+   }
+   
+   void scale(float value) {
+      currentShader.set("u_scale", value);
    }
 }

@@ -28,6 +28,11 @@ Mesh mesh;
 float sceneClock = 0;
 float sceneClockSpeed = 0.1;
 
+// Audio
+AudioIn audioIn;
+AudioIndicator audioIndicator;
+EnvelopeFollower envf;
+
 void settings() {
   loadConfig();
   if (_fullscreen_) { fullScreen(P3D); }
@@ -39,7 +44,12 @@ void setup() {
   camera = new PeasyCam(this, mesh.position.x, mesh.position.y, mesh.position.z, 1000);
   camera.setMinimumDistance(mesh.SIZE*0.5);
   camera.setMaximumDistance(mesh.SIZE*10.);
-
+  
+  audioIn = new AudioIn(this, 0);
+  audioIn.start();
+  audioIndicator = new AudioIndicator(this, audioIn);
+  envf = new EnvelopeFollower(this, audioIn);
+  
 }
 
 void draw() {
@@ -51,10 +61,12 @@ void draw() {
   sceneClock = millis() * sceneClockSpeed; // set global clock
 
   mesh.update();
+  mesh.scale(envf.getValue());
   mesh.display();
 
   camera.beginHUD();
   showFramerate();
+  audioIndicator.display();
   camera.endHUD(); // always!
 }
 
