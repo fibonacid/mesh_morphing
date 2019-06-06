@@ -8,7 +8,7 @@ import controlP5.*;
  *  author:        Lorenzo Rivosecchi
  *  title:         live_visuals
  *  description:   A sketch to make interactive visuals
- *  version:       0.1.0
+ *  version:       0.1.2
  *  ------------------------------------------------------ */
 
 /* Configuration file */
@@ -55,7 +55,8 @@ void setup() {
   camera = new PeasyCam(this, mesh.position.x, mesh.position.y, mesh.position.z, 600);
   camera.setMinimumDistance(mesh.SIZE*0.5);
   camera.setMaximumDistance(mesh.SIZE*10.);
-  
+   
+ 
   // Initialize Audio
   audioIn = new AudioIn(this, 0);
   audioIn.start();
