@@ -38,7 +38,7 @@ class Line implements Runnable {
           float time = delta();
           if (time <= duration) {
             float angle = (destination - value) / duration;
-            value = value + angle * time; //<>// //<>//
+            value = value + angle * time; //<>// //<>// //<>//
           } else {
             
           }
@@ -117,17 +117,18 @@ PVector sphericalToCartesian(PVector rtp, PVector xyz, PVector origin) {
  */
 class AudioIndicator {
   
-  Amplitude amp;
+  Amplitude rms;
   int barTicks = 16;
   float barHeight = 100;
   float barWidth = 10;
   
-  AudioIndicator(Amplitude amp) {
-    this.amp = amp;
+  AudioIndicator(PApplet parent, AudioIn input) {
+    rms = new Amplitude(parent);
+    rms.input(input);
   }
   
   void display() {
-    float level = this.amp.analyze();
+    float level = this.rms.analyze();
     pushStyle();
     stroke(255);
     noFill();
