@@ -8,7 +8,7 @@ import controlP5.*;
  *  author:        Lorenzo Rivosecchi
  *  title:         live_visuals
  *  description:   A sketch to make interactive visuals
- *  version:       0.0.9
+ *  version:       0.1.0
  *  ------------------------------------------------------ */
 
  // Configuration file
@@ -62,6 +62,7 @@ void draw() {
 
   mesh.update();
   mesh.scale(envf.getValue());
+  mesh.rotate();
   mesh.display();
 
   camera.beginHUD();
