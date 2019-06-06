@@ -22,6 +22,9 @@ build-tmp/
 web-export/
 *.autosave
 
+# Configuration Files:
+config/settings.json
+
 # Some specific to my workflow
 out/
 #*.jpg
