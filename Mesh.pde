@@ -1,6 +1,8 @@
 class Mesh {
     
    private PVector position;
+   private PVector rotation;
+   private PVector rotationSpeed;
    private PShape shape;
    private final float SIZE = width/4;
    
@@ -16,7 +18,11 @@ class Mesh {
      if (_eco_) { sphereDetail(30); }
      else       { sphereDetail(100);  }   
      shape = createShape(SPHERE, SIZE);
+     
      position = new PVector(width/2, height/2, 0);
+     rotation = new PVector(0, 0, 0);
+     rotationSpeed = new PVector(random(0, PI/1024), random(0, PI/1024), random(0, PI/1024));
+     
      shape.setTexture(DEFAULT_TEXTURE);
      shape.setStroke(false);
      
@@ -29,17 +35,23 @@ class Mesh {
      currentShader.set("u_noise_amount", 1.0);
    }
    
-   void display() {
-     
+   void rotate() {
+     rotation.add(rotationSpeed);
+   }
+   
+   void display() {     
      shader(currentShader);
           
      pushMatrix();
+     
      translate(position.x, position.y, position.z);
+     rotateX(rotation.x);
+     rotateY(rotation.y);
+     rotateZ(rotation.z);
      
      shape(shape);
-     
      popMatrix();
-   
+  
      resetShader();
    }
    
