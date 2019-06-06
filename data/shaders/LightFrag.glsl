@@ -19,7 +19,7 @@
   Free Software Foundation, Inc., 59 Temple Place, Suite 330,
   Boston, MA  02111-1307  USA
 */
- 
+
 #ifdef GL_ES
 precision mediump float;
 precision mediump int;
@@ -27,7 +27,16 @@ precision mediump int;
 
 varying vec4 vertColor;
 varying vec4 backVertColor;
+varying vec4 fragPosition;
+
+uniform float u_time;
+
 
 void main() {
-  gl_FragColor = gl_FrontFacing ? vertColor : backVertColor;
+
+  vec4 brightness = gl_FrontFacing ? vertColor : backVertColor;
+
+  vec4 color = fragPosition * brightness;
+
+  gl_FragColor = vec4(color.rgb, 1.0);
 }
