@@ -8,6 +8,9 @@ class Mesh {
    private final PShader TEXLIGHT_SHADER  = loadShader("shaders/TexLightFrag.glsl", "shaders/TexLightVert.glsl");
    private final PShader LIGHT_SHADER = loadShader("shaders/LightFrag.glsl", "shaders/LightVert.glsl");
    private PShader currentShader;
+   
+   final static int WITH_TEXTURE = 1;
+   final static int NO_TEXTURE = 2;
   
    Mesh() {
      sphereDetail(200);
@@ -36,5 +39,19 @@ class Mesh {
      popMatrix();
    
      resetShader();
+   }
+   
+   /**
+    *
+    */
+   void setMode(int mode) {
+      switch(mode) {
+         case WITH_TEXTURE:
+           currentShader = TEXLIGHT_SHADER;
+           break;
+         case NO_TEXTURE:
+           currentShader = LIGHT_SHADER;
+           break;
+      }
    }
 }

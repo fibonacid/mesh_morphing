@@ -56,3 +56,13 @@ void draw() {
   showFramerate();
   camera.endHUD(); // always!
 }
+
+void keyPressed() {
+   switch(key) {
+     case '1':
+       mesh.setMode(Mesh.WITH_TEXTURE);
+       break;
+     case '2':
+       mesh.setMode(Mesh.NO_TEXTURE);
+   }
+}
