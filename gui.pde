@@ -26,6 +26,6 @@ void vertex_noise_speed(float value) {
   mesh.setVertexNoiseSpeed(value, 3000); 
 }
 
-void onVertexNoiseChange(float value) {
-  mesh.setVertexNoiseAmount(value);
+void audio_sensitivity(float value) {
+  envf.setSensitivity(value);
 }
