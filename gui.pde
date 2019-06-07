@@ -4,7 +4,7 @@
 void createGUI() {
   gui = new ControlP5(this);
   gui.setAutoDraw(false);
-  gui.addSlider("vertex_noise_amount")
+  
   gui.setColorBackground(0x66666666);
   gui.setColorForeground(0xBBBBBBBB);
   gui.setColorActive    (0xDDDDDDDD);
