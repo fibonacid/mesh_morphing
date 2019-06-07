@@ -74,6 +74,7 @@ void setup() {
   camera = new PeasyCam(this, mesh.position.x, mesh.position.y, mesh.position.z, 600);
   camera.setMinimumDistance(mesh.SIZE*0.5);
   camera.setMaximumDistance(mesh.SIZE*10.);
+  camera.setActive(false);
    
   // Initialize Audio
   audioIn = new AudioIn(this, 0);
@@ -128,18 +129,34 @@ void draw() {
  *
  */
 void keyPressed() {  
-  char k = Character.toUpperCase(key); 
-  switch(k) {
-  case '1':
-    mesh.setMode(Mesh.WITH_TEXTURE);
-    break;
-  case '2':
-    mesh.setMode(Mesh.NO_TEXTURE);
-    break;
-  case 'C':
-    showControls = !showControls;
-    break;
-  }
+  char k = Character.toUpperCase(key);
+  if (key == CODED) {
+    if (keyCode == SHIFT) {
+       camera.setActive(true);
+       println("[KEY]\tShift Pressed: use your mouse to move around");
+    } 
+  } else {
+    switch(k) {
+    case '1':
+      mesh.setMode(Mesh.WITH_TEXTURE);
+      break;
+    case '2':
+      mesh.setMode(Mesh.NO_TEXTURE);
+      break;
+    case 'C':
+      showControls = !showControls;
+      break;
+    }
+  } 
+}
+
+void keyReleased() {
+  if (key == CODED) {
+    if (keyCode == SHIFT) {
+       println("[KEY]\tShift Released: camera is locked. Press again to move around");
+       camera.setActive(false); 
+    }
+   }
 }
 
 /**
