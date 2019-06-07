@@ -126,12 +126,12 @@ void main() {
 
   vec4 brightness = gl_FrontFacing ? vertColor : backVertColor;
 
-  float noise = fmb(fragPosition.xyz + u_time * 0.01);
+  float noise = fmb(fragPosition.xyz * 4. + u_time * 0.01);
 
-  vec4 colorA = vec4(.1, .1, .3, 1.);
-  vec4 colorB = vec4(0., 0., 1., 1.);
-  vec4 color  = mix(colorA, colorB, smoothstep(0.0, 0.5, noise));
-  color *= 0.5 + 0.5 * (brightness);
+  vec4 colorA = vec4(.9, .2, .8, 1.);
+  vec4 colorB = vec4(.0, .0, 1., 1.);
+  vec4 color  = mix(colorA, colorB, smoothstep(0.0, 0.25, noise));
+  color *= brightness;
 
   gl_FragColor = vec4(color.rgb, 1.0);
 }
