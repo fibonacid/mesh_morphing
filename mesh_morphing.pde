@@ -1,7 +1,6 @@
 import peasy.PeasyCam;
 import processing.sound.*;
 import processing.video.*;
-import themidibus.*;
 import controlP5.*;
 
 /** ------------------------------------------------------
