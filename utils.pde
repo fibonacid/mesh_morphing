@@ -135,6 +135,7 @@ class AudioIndicator {
     float level = this.rms.analyze();
     pushStyle();
     stroke(255);
+    strokeWeight(.5);
     noFill();
     float h = barHeight / barTicks;
     float w = barWidth;
