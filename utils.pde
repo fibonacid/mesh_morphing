@@ -33,18 +33,16 @@ class Line implements Runnable {
   float delta() {
     return millis() - timestamp;
   }
-  
-  // line.to(1, 10, 1000);
-  
+    
   public void run() {
      while(true) {
         try {
           float time = delta();
-          if (time <= duration) {
+          if (time <= duration) { //<>//
             float angle = (destination - value) / duration;
-            value = value + angle * time; //<>// //<>// //<>// //<>//
+            value = value + angle * time; 
           } else {
-            
+             //<>//
           }
           ease.sleep(SLEEP_TIME);
         } catch (Exception e) {
