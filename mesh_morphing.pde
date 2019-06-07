@@ -39,8 +39,10 @@ EnvelopeFollower envf;             //
 
 /* GUI */
 ControlP5 gui;                     // Graphic User Interface
-Slider noiseAmountSlider;          //
-Slider noiseSpeedSlider;           //
+Slider vertNoiseAmountSlider;      //
+Slider vertNoiseSpeedSlider;       //
+Slider fragNoiseAmountSlider;      //
+Slider fragNoiseSpeedSlider;       //
 Slider audioSensitivitySlider;     //
 Slider ambientLightSlider;         //
 Slider audioIndicator;             //
