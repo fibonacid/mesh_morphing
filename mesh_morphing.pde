@@ -108,7 +108,7 @@ void draw() {
     camera.beginHUD();
     // 2D Code here
     showFramerate();
-    audioIndicator.display();
+    audioIndicator.setValue(rms.analyze());
     gui.draw();
     camera.endHUD();
   } else {
