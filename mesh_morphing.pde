@@ -104,7 +104,7 @@ void draw() {
   mesh.display();
   
   if (showControls) {
-    camera.setActive(false); 
+    //camera.setActive(false); 
     camera.beginHUD();
     // 2D Code here
     showFramerate();
