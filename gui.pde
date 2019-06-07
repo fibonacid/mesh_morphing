@@ -78,16 +78,46 @@ void createGUI() {
     .setPosition(left, top+sliderSize[1]*8)
     .setValue(0.25)
     .setRange(0.1, 1);
+    
 }
 
+
+void controlEvent(ControlEvent event) {
+   switch(event.name()) {
+      case "vertex_noise_amount":
+        mesh.setVertexNoiseAmount(event.value(), 3000);
+        break;
+      case "vertex_noise_speed":
+        mesh.setVertexNoiseSpeed(event.value(), 3000);
+        break;
+      case "audio_sensitivity":
+        envf.setSensitivity(event.value());
+        break;
+      case "mesh_mode":
+        try { mesh.setMode((int)event.value()); }
+        catch (Exception e) { println(e); }
+        break;
+      case "ambient_light":
+        lightIntensity = event.value();
+        break;
+   }
+   //println("[GUI Event]", event.name(),"=>",event.value());
+}
+
+
+/*
 void vertex_noise_amount (float value) {
   mesh.setVertexNoiseAmount(value, 3000);
 }
 
 void vertex_noise_speed(float value) {
-  mesh.setVertexNoiseSpeed(value, 3000); 
+  mesh.setVertexNoiseSpeed(value, 3000);
 }
 
 void audio_sensitivity(float value) {
   envf.setSensitivity(value);
 }
+
+void mesh_mode(int value) {
+  println(value);
+}*/
