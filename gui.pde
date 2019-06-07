@@ -121,7 +121,7 @@ void controlEvent(ControlEvent event) {
         lightIntensity = event.value();
         break;
    }
-   //println("[GUI Event]", event.name(),"=>",event.value());
+   println("[GUI Event]", event.name(),"=>",event.value());
 }
 
 
