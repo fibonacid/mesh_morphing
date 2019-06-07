@@ -53,6 +53,7 @@ Println console;                   //
  * Here is possible to set window size using variables
  */
 void settings() {
+  // Load sketch configuration
   loadConfig();
   if (_fullscreen_) { 
     fullScreen(P3D);
@@ -116,6 +117,9 @@ void draw() {
   }
 }
 
+/**
+ *
+ */
 void keyPressed() {  
   char k = Character.toUpperCase(key); 
   switch(k) {
