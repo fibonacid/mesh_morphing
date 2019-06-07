@@ -19,6 +19,19 @@ void createGUI() {
   int bottom = height - marginBottom;
   
   int[] sliderSize = {140, 14};
+    
+  myTextarea = gui.addTextarea("txt")
+                  .setPosition(left+sliderSize[1]*2, bottom - 100)
+                  .setSize(width/2, 100)
+                  .setFont(createFont("", 10))
+                  .setLineHeight(14)
+                  .setColor(color(200))
+                  .setColorBackground(color(0, 100))
+                  .setColorForeground(color(255, 100));
+  ;
+
+  console = gui.addConsole(myTextarea);
+  
   audioIndicator = gui.addSlider("audio_indicator")
     .setColorForeground(0xFF00FF00)
     .setColorActive    (0x00FF00FF)
