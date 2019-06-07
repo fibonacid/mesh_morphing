@@ -8,7 +8,7 @@ import controlP5.*;
  *  author:        Lorenzo Rivosecchi
  *  title:         live_visuals
  *  description:   A sketch to make interactive visuals
- *  version:       0.1.2
+ *  version:       0.1.3
  *  ------------------------------------------------------ */
 
 /* Configuration file */
