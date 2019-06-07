@@ -126,6 +126,9 @@ void controlEvent(ControlEvent event) {
         break;
    }
    if (event.name() != "audio_indicator") {
-      println("[GUI Event]", event.name(),"=>",event.value()); 
+      // Ignore Events fired automatically at gui setup
+      if (millis() > 5000) {
+        println("[GUI Event]", event.name(),"=>",event.value()); 
+      }
    }
 }
