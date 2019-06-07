@@ -99,10 +99,16 @@ void createGUI() {
 void controlEvent(ControlEvent event) {
    switch(event.name()) {
       case "vertex_noise_amount":
-        mesh.setVertexNoiseAmount(event.value(), 3000);
+        mesh.setVertNoiseAmount(event.value(), 3000);
         break;
       case "vertex_noise_speed":
-        mesh.setVertexNoiseSpeed(event.value(), 3000);
+        mesh.setVertNoiseSpeed(event.value(), 3000);
+        break;
+      case "fragment_noise_amount":
+        mesh.setFragNoiseAmount(event.value(), 3000);
+        break;
+      case "fragment_noise_speed":
+        mesh.setFragNoiseSpeed(event.value(), 100000);
         break;
       case "audio_sensitivity":
         envf.setSensitivity(event.value());
