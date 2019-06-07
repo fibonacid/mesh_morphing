@@ -24,9 +24,9 @@ void createGUI() {
   int[] sliderSize = {140, 14};
     
   myTextarea = gui.addTextarea("txt")
-                  .setPosition(left+sliderSize[1]*2, bottom - 100)
-                  .setSize(width-marginRight-marginLeft-2*sliderSize[1], 100)
-                  .setFont(createFont("", 10))
+                  .setPosition(left+sliderSize[1]*4, bottom - 100)
+                  .setSize(width-marginRight-marginLeft-4*sliderSize[1], 100)
+                  .setFont(createFont("Menlo-Regular", 10))
                   .setLineHeight(14)
                   .setColor(color(200))
                   .setColorBackground(color(0, 100))
@@ -34,6 +34,7 @@ void createGUI() {
   ;
 
   console = gui.addConsole(myTextarea);
+  console.pause();
   
   audioIndicator = gui.addSlider("audio_indicator")
     .setColorForeground(0xFF00FF00)
@@ -44,6 +45,14 @@ void createGUI() {
     .setValue(0.5)
     .setLabelVisible(false) 
     .lock();
+    
+  audioSensitivitySlider = gui.addSlider("audio_sensitivity")
+    //.setLabel("AUDIO SENSITIVITY")
+    .setRange(0.0, 1.0)
+    .setValue(1.0)
+    .setLabelVisible(false) 
+    .setSize(int(sliderSize[1]/2f), 100)
+    .setPosition(left+sliderSize[1]+int(sliderSize[1]/2), bottom-100);  
   
   vertNoiseAmountSlider = gui.addSlider("vertex_noise_amount")
     .setLabel("VERTEX NOISE AMOUNT")
@@ -72,14 +81,14 @@ void createGUI() {
     .setValue(mesh.vertNoiseSpeed.value)
     .setSize(sliderSize[0], sliderSize[1])
     .setPosition(left, top+sliderSize[1]*6);
-        
-  audioSensitivitySlider = gui.addSlider("audio_sensitivity")
-    .setLabel("AUDIO SENSITIVITY")
-    .setRange(0.0, 1.0)
-    .setValue(1.0)
-    .setSize(sliderSize[0], sliderSize[1])
-    .setPosition(left, top+sliderSize[1]*8);
     
+  ambientLightSlider = gui.addSlider("ambient_light")
+    .setLabel("LIGHT INTENSITY")
+    .setSize(sliderSize[0], sliderSize[1])
+    .setPosition(left, top+sliderSize[1]*8)
+    .setValue(0.25)
+    .setRange(0.1, 1);
+            
   meshModeRadio = gui.addRadio("mesh_mode")
     .setLabel("MESH MODE")
     .setPosition(left, top+sliderSize[1]*10)
@@ -88,14 +97,7 @@ void createGUI() {
     .setSpacingColumn(70)
     .addItem("MATERIAL", Mesh.WITH_TEXTURE)
     .addItem("ABSTRACT", Mesh.NO_TEXTURE);
-    
-  ambientLightSlider = gui.addSlider("ambient_light")
-    .setLabel("LIGHT INTENSITY")
-    .setSize(sliderSize[0], sliderSize[1])
-    .setPosition(left, top+sliderSize[1]*12)
-    .setValue(0.25)
-    .setRange(0.1, 1);
-    
+       
 }
 
 /**
