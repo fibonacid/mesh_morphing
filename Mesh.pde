@@ -14,8 +14,10 @@ class Mesh {
    final static int WITH_TEXTURE = 1;
    final static int NO_TEXTURE = 2;
    
-   private final Line vertexNoiseAmount = new Line(1.0);
-   private final Line vertexNoiseSpeed  = new Line(0.5);
+   private final Line vertNoiseAmount = new Line(1.0);
+   private final Line vertNoiseSpeed  = new Line(0.5);
+   private final Line fragNoiseAmount = new Line(1.0);
+   private final Line fragNoiseSpeed  = new Line(0.5);
   
    Mesh() {
      if (_eco_) { sphereDetail(30); }
@@ -34,8 +36,10 @@ class Mesh {
    
    void update() {
      currentShader.set("u_time", sceneClock);
-     currentShader.set("u_noise_amount", vertexNoiseAmount.value);
-     currentShader.set("u_noise_speed", vertexNoiseSpeed.value);
+     currentShader.set("u_vert_noise_amount", vertNoiseAmount.value);
+     currentShader.set("u_vert_noise_speed", vertNoiseSpeed.value);
+     currentShader.set("u_frag_noise_amount", fragNoiseAmount.value);
+     currentShader.set("u_frag_noise_speed", fragNoiseSpeed.value);
    }
    
    void rotate() {
@@ -72,12 +76,20 @@ class Mesh {
       }
    }
    
-   void setVertexNoiseAmount(float value, float time) {
-      vertexNoiseAmount.to(value, time);
+   void setVertNoiseAmount(float value, float time) {
+      vertNoiseAmount.to(value, time);
    }
    
-   void setVertexNoiseSpeed(float value, float time) {
-      vertexNoiseSpeed.to(value, time);
+   void setVertNoiseSpeed(float value, float time) {
+      vertNoiseSpeed.to(value, time);
+   }
+   
+   void setFragNoiseAmount(float value, float time) {
+      fragNoiseAmount.to(value, time); 
+   }
+   
+   void setFragNoiseSpeed(float value, float time) {
+      fragNoiseSpeed.to(value, time); 
    }
    
    void scale(float value) {
