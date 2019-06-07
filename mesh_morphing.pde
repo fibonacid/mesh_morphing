@@ -90,7 +90,7 @@ void setup() {
   console.play(); // enable on screen messages
   println("Hello ! Here are some instructions\n");
   println("\t- Press C to hide controls");
-  println("\t- Press Shift to move camera around with your mouse");
+  println("\t- Press Alt to move camera around with your mouse");
   println("\nHave fun ! :)");
 }
 
@@ -131,9 +131,9 @@ void draw() {
 void keyPressed() {  
   char k = Character.toUpperCase(key);
   if (key == CODED) {
-    if (keyCode == SHIFT) {
+    if (keyCode == ALT) {
        camera.setActive(true);
-       println("[KEY]\tShift Pressed: use your mouse to move around");
+       println("[KEY]\tAlt Pressed: use your mouse to move around");
     } 
   } else {
     switch(k) {
@@ -152,8 +152,8 @@ void keyPressed() {
 
 void keyReleased() {
   if (key == CODED) {
-    if (keyCode == SHIFT) {
-       println("[KEY]\tShift Released: camera is locked. Press again to move around");
+    if (keyCode == ALT) {
+       println("[KEY]\tAlt Released: camera is locked. Press again to move around");
        camera.setActive(false); 
     }
    }
