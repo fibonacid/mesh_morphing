@@ -107,7 +107,6 @@ void draw() {
     //camera.setActive(false); 
     camera.beginHUD();
     // 2D Code here
-    showFramerate();
     audioIndicator.setValue(rms.analyze());
     gui.draw();
     camera.endHUD();
