@@ -30,6 +30,8 @@ varying vec4 backVertColor;
 varying vec4 fragPosition;
 
 uniform float u_time;
+uniform float u_frag_noise_amount;
+uniform float u_frag_noise_speed;
 
 //	Classic Perlin 3D Noise
 //	by Stefan Gustavson
@@ -126,11 +128,13 @@ void main() {
 
   vec4 brightness = gl_FrontFacing ? vertColor : backVertColor;
 
-  float noise = fmb(fragPosition.xyz * 4. + u_time * 0.01);
+  float noise_freq = 0.1 + 10. * u_frag_noise_speed;
+  float noise_amount = 1.0 - 0.8 * u_frag_noise_amount;
+  float noise = fmb(fragPosition.xyz * noise_freq + u_time * 0.01);
 
-  vec4 colorA = vec4(.9, .2, .8, 1.);
-  vec4 colorB = vec4(.0, .0, 1., 1.);
-  vec4 color  = mix(colorA, colorB, smoothstep(0.0, 0.25, noise));
+  vec4 colorA = vec4(0.0, 0.0, 1.0, 1.);
+  vec4 colorB = vec4(1.0) - colorA;
+  vec4 color  = mix(colorA, colorB, smoothstep(0.0, noise_amount, noise));
   color *= brightness;
 
   gl_FragColor = vec4(color.rgb, 1.0);
