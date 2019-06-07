@@ -16,7 +16,7 @@ abstract class Orbiter {
      this.origin = origin;
      polarSpeed = new PVector(0, random(0.005), random(0.005));
      carthesianPosition = new PVector(width/2, height/2, 600);
-     polarPosition = new PVector(1000, 0, 0);
+     polarPosition = new PVector(500, 0, 0);
    }
    
    void move() {
