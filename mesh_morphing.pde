@@ -3,12 +3,12 @@ import processing.sound.*;
 import processing.video.*;
 import controlP5.*;
 
-/** ------------------------------------------------------
- *  author:        Lorenzo Rivosecchi
- *  title:         live_visuals
- *  description:   A sketch to make interactive visuals
- *  version:       0.1.5
- *  ------------------------------------------------------ */
+/** ----------------------------------------------------------------------------------------- *
+ *  author:        Lorenzo Rivosecchi                                                         *
+ *  title:         mesh_morphing                                                              *
+ *  description:   A sketch to dive deep into the inner workings of a processing 3D scene.    *
+ *  version:       0.1.5                                                                      *
+ *  ----------------------------------------------------------------------------------------- */
 
 /* Configuration file */
 JSONObject config;
