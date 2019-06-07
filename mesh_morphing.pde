@@ -64,6 +64,7 @@ void settings() {
   }
 }
 
+/** */
 void setup() {
   
   // Initialize Scene
@@ -96,29 +97,27 @@ void draw() {
   sceneClock = millis() * sceneClockSpeed; // set global clock
   
   float b = 255*lightIntensity;
-  //directionalLight(b,b,b,mesh.position.x,mesh.position.y,mesh.position.z+200);
-  ambientLight(255*lightIntensity,255*lightIntensity,255*lightIntensity);
+  ambientLight(b,b,b);
   
+  // Update and apply lights
   for (OrbitingLamp lamp : lamps) {
     lamp.move();
     lamp.update();
     lamp.apply();
   }
-
+  
+  // Update and display mesh
   mesh.update();
   mesh.scale(envf.getValue());
   mesh.rotate();
   mesh.display();
   
   if (showControls) {
-    //camera.setActive(false); 
     camera.beginHUD();
     // 2D Code here
-    audioIndicator.setValue(rms.analyze());
+    audioIndicator.setValue(rms.analyze()); // visualize audio level
     gui.draw();
     camera.endHUD();
-  } else {
-    camera.setActive(true); 
   }
 }
 
@@ -141,7 +140,7 @@ void keyPressed() {
 }
 
 /**
- *
+ * Creates instances of class OrbitingLamp (found in Orbiter tab)
  */
 void createLamps() {
   if (_eco_) { 

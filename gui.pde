@@ -5,10 +5,12 @@ void createGUI() {
   gui = new ControlP5(this);
   gui.setAutoDraw(false);
   
+  // Set gui colors
   gui.setColorBackground(0x66666666);
   gui.setColorForeground(0xBBBBBBBB);
   gui.setColorActive    (0xDDDDDDDD);
   
+  // Set style variables
   int marginLeft   = 20;
   int marginRight  = 20;
   int marginTop    = 20;
@@ -95,7 +97,9 @@ void createGUI() {
     
 }
 
-
+/**
+ * GUI event callback
+ */
 void controlEvent(ControlEvent event) {
    switch(event.name()) {
       case "vertex_noise_amount":
@@ -121,23 +125,7 @@ void controlEvent(ControlEvent event) {
         lightIntensity = event.value();
         break;
    }
-   println("[GUI Event]", event.name(),"=>",event.value());
+   if (event.name() != "audio_indicator") {
+      println("[GUI Event]", event.name(),"=>",event.value()); 
+   }
 }
-
-
-/*
-void vertex_noise_amount (float value) {
-  mesh.setVertexNoiseAmount(value, 3000);
-}
-
-void vertex_noise_speed(float value) {
-  mesh.setVertexNoiseSpeed(value, 3000);
-}
-
-void audio_sensitivity(float value) {
-  envf.setSensitivity(value);
-}
-
-void mesh_mode(int value) {
-  println(value);
-}*/

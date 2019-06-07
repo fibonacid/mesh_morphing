@@ -1,39 +1,47 @@
 /**
- *
+ * This is a processing implementation of the line object in max msp.
+ * It performs a linear interpolation over time to enable smooth change of parameters.
+ * Note that this class works asynchronously 
  */
 class Line implements Runnable {
   
-  final int SLEEP_TIME = 2;
-  float timestamp;
-  float destination;
-  float value = 0;
-  float duration = 500;
-  Thread ease = new Thread(this);
+  final int SLEEP_TIME = 2;         // ms of sleep of the thread
+  float timestamp;                  // holds current time at the to() call
+  float destination;                // value that the object should reach
+  float value = 0;                  // current value
+  float duration = 500;             // length in milliseconds of the interpolation
+  Thread ease = new Thread(this);   // Threaded update
   
+  /** Constructs a new object with default initial value */
   Line() {
      this(0.0); 
   }
   
+  /** Constructs a new object with default initial value */
   Line(float value) {
     this.value = value;
-    ease.start();
+    ease.start(); // launch thread 
   }
   
+  /** @see to(float destination, float duration) */
   void to(float destination) {
     timestamp = millis();
     this.destination = destination;
   }
-
+  
+  /** Sets new destination value, therefor triggers the interpolation */
   void to(float destination, float duration) {
     timestamp = millis();
     this.destination = destination;
     this.duration = duration;
   }
   
+  /** Gets time passed from last to() call */
   float delta() {
     return millis() - timestamp;
   }
     
+  /** Thread Callback */
   public void run() {
      while(true) {
         try {
@@ -44,9 +52,9 @@ class Line implements Runnable {
           } else {
              //<>//
           }
-          ease.sleep(SLEEP_TIME);
+          Thread.sleep(SLEEP_TIME);
         } catch (Exception e) {
-          
+          e.printStackTrace();
         }
      } 
   }
@@ -114,64 +122,13 @@ PVector sphericalToCartesian(PVector rtp, PVector xyz, PVector origin) {
   return xyz;
 }
 
-/**
- *
- */
-class AudioIndicator {
-  
-  Amplitude rms;
-  int barTicks = 16;
-  float barHeight = 100;
-  float barWidth = 10;
-  
-  AudioIndicator(PApplet parent, AudioIn input) {
-    rms = new Amplitude(parent);
-    rms.input(input);
-  }
-  
-  void display() {
-    float level = this.rms.analyze();
-    pushStyle();
-    stroke(255);
-    strokeWeight(.5);
-    noFill();
-    float h = barHeight / barTicks;
-    float w = barWidth;
-    rect(width-2*w, height - w - barHeight,w,barHeight); 
-    for(int i = 1; i <= barTicks; i++) {
-      noStroke();
-      float amnt = pow((i+1)/float(barTicks), 2);
-      if (level >= amnt) {
-         fill(lerpColor(#1BE341,#E31B1B, amnt));
-         rect(width-2*w, height - w - h*i,w,h);  
-      }
-    }
-    popStyle();
-  }
-}
-
-/**
- *
- */
-void showFramerate() {
-  pushStyle();
-  fill(255);
-  textSize(15);
-  text(int(frameRate)+" FPS", 15, height - 30, width -15, height - 30);
-  popStyle();
-}
-
-/**
- *
- */
+/** Sinewave low frequency oscillator */
 float smoothLFO(float freq) {
   if (int(sceneClock) % int(freq) == 0) return 1.0;
   return 0.0;
 }
 
-/**
- *
- */
+/** Square-wave low frequency oscillator */
 float sharpLFO(float freq) {
   return abs(sin(sceneClock * freq));
 }
@@ -186,6 +143,9 @@ class EnvelopeFollower {
   private float value;
   private float record = 0.0;
   
+  /**
+   *
+   */
   EnvelopeFollower(PApplet parent, AudioIn input) {
     // Create a new Amplitude analyzer
     rms = new Amplitude(parent);
@@ -193,6 +153,9 @@ class EnvelopeFollower {
     rms.input(input);
   }
   
+  /**
+   *
+   */
   float getValue() {
     float amp = rms.analyze();
     if (amp > record) record = amp;
@@ -200,6 +163,9 @@ class EnvelopeFollower {
     return map(value, 0, record, 0, 1);
   } 
   
+  /**
+   *
+   */
   void setSensitivity(float value) {
     smoothingFactor = map(value, 0, 1, 0, 0.3);
   }
