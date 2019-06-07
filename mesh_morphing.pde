@@ -76,6 +76,7 @@ void setup() {
   audioIn.start();
   audioIndicator = new AudioIndicator(this, audioIn);
   envf = new EnvelopeFollower(this, audioIn);
+  rms.input(audioIn);
   
   createGUI(); // Initialize GUI
 
