@@ -14,30 +14,44 @@ import controlP5.*;
 /* Configuration file */
 JSONObject config;
 
-/* Session variables */
+/* Session variables:
+ * This variables can be overwritten through the file config/settings.json. */
 boolean _fullscreen_   = false;
-int     _width_        = 500;
-int     _height_       = 500;
-boolean _eco_          = false;
+int     _width_        = 500;      // Window width in pixels
+int     _height_       = 500;      // Window height in pixels
+boolean _eco_          = false;    // Low resolution mode
 
 /* State variables */
-boolean showControls = true;
+boolean showControls = true;       // GUI visibility 
+float lightIntensity = 0.2;        // Brightness of the 3D scene
+float sceneClock = 0;              // Master clock of the scene
+float sceneClockSpeed = 0.1;       // Time scaling factor of the master clock
 
 /* 3D Scene */
-PeasyCam camera;
-Mesh mesh;
-OrbitingLamp[] lamps;
-float sceneClock = 0;
-float sceneClockSpeed = 0.1;
+PeasyCam camera;                   // Camera controllable through the mouse
+Mesh mesh;                         // Main element of the scene
+OrbitingLamp[] lamps;              // Array of spotlights to light the scene
 
 /* Audio */
-AudioIn audioIn;
-AudioIndicator audioIndicator;
-EnvelopeFollower envf;
+AudioIn audioIn;                   // Audio Input
+Amplitude rms;                     // RMS Analyzer
+EnvelopeFollower envf;             // 
 
 /* GUI */
-ControlP5 gui;
+ControlP5 gui;                     // Graphic User Interface
+Slider noiseAmountSlider;          //
+Slider noiseSpeedSlider;           //
+Slider audioSensitivitySlider;     //
+Slider ambientLightSlider;         //
+Slider audioIndicator;             //
+RadioButton meshModeRadio;         //
+Textarea myTextarea;               //
+Println console;                   //
 
+/**
+ * This function gets called right before setup.
+ * Here is possible to set window size using variables
+ */
 void settings() {
   loadConfig();
   if (_fullscreen_) { 
