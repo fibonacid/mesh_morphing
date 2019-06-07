@@ -59,7 +59,7 @@ class OrbitingLamp extends Orbiter {
         carthesianPosition.y,
         carthesianPosition.z, 
         0, 
-        -1, 
+        0, 
         -1, 
         angle, 
         1
