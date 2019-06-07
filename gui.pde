@@ -41,17 +41,43 @@ void createGUI() {
     .setValue(0.5)
     .setLabelVisible(false) 
     .lock();
+  
+  noiseAmountSlider = gui.addSlider("vertex_noise_amount")
     .setLabel("VERTEX NOISE AMOUNT")
     .setRange(0.0, 1.0)
-    .linebreak();
-  gui.addSlider("vertex_noise_speed")
+    .setValue(mesh.vertexNoiseAmount.value)
+    .setSize(sliderSize[0], sliderSize[1])
+    .setPosition(left, top);
+    
+  noiseSpeedSlider = gui.addSlider("vertex_noise_speed")
     .setLabel("VERTEX NOISE SPEED")
     .setRange(0.0, 1.0)
-    .linebreak();
-  gui.addSlider("audio_sensitivity")
+    .setValue(mesh.vertexNoiseSpeed.value)
+    .setSize(sliderSize[0], sliderSize[1])
+    .setPosition(left, top+sliderSize[1]*2);
+    
+  audioSensitivitySlider = gui.addSlider("audio_sensitivity")
     .setLabel("AUDIO SENSITIVITY")
     .setRange(0.0, 1.0)
-    .linebreak();
+    .setValue(1.0)
+    .setSize(sliderSize[0], sliderSize[1])
+    .setPosition(left, top+sliderSize[1]*4);
+    
+  meshModeRadio = gui.addRadio("mesh_mode")
+    .setLabel("MESH MODE")
+    .setPosition(left, top+sliderSize[1]*6)
+    .setSize(sliderSize[1], sliderSize[1])
+    .setItemsPerRow(2)
+    .setSpacingColumn(70)
+    .addItem("MATERIAL", Mesh.WITH_TEXTURE)
+    .addItem("ABSTRACT", Mesh.NO_TEXTURE);
+    
+  ambientLightSlider = gui.addSlider("ambient_light")
+    .setLabel("LIGHT INTENSITY")
+    .setSize(sliderSize[0], sliderSize[1])
+    .setPosition(left, top+sliderSize[1]*8)
+    .setValue(0.25)
+    .setRange(0.1, 1);
 }
 
 void vertex_noise_amount (float value) {
