@@ -89,7 +89,7 @@ void createGUI() {
   ambientLightSlider = gui.addSlider("ambient_light")
     .setLabel("LIGHT INTENSITY")
     .setSize(sliderSize[0], sliderSize[1])
-    .setPosition(left, top+sliderSize[1]*8)
+    .setPosition(left, top+sliderSize[1]*12)
     .setValue(0.25)
     .setRange(0.1, 1);
     
