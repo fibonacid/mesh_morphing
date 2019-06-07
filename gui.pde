@@ -5,6 +5,20 @@ void createGUI() {
   gui = new ControlP5(this);
   gui.setAutoDraw(false);
   gui.addSlider("vertex_noise_amount")
+  gui.setColorBackground(0x66666666);
+  gui.setColorForeground(0xBBBBBBBB);
+  gui.setColorActive    (0xDDDDDDDD);
+  
+  int marginLeft   = 20;
+  int marginRight  = 20;
+  int marginTop    = 20;
+  int marginBottom = 20;
+  int left   = marginLeft;
+  int right  = width - marginRight;
+  int top    = marginTop;
+  int bottom = height - marginBottom;
+  
+  int[] sliderSize = {140, 14};
   audioIndicator = gui.addSlider("audio_indicator")
     .setColorForeground(0xFF00FF00)
     .setColorActive    (0x00FF00FF)
