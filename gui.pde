@@ -42,30 +42,44 @@ void createGUI() {
     .setLabelVisible(false) 
     .lock();
   
-  noiseAmountSlider = gui.addSlider("vertex_noise_amount")
+  vertNoiseAmountSlider = gui.addSlider("vertex_noise_amount")
     .setLabel("VERTEX NOISE AMOUNT")
     .setRange(0.0, 1.0)
-    .setValue(mesh.vertexNoiseAmount.value)
+    .setValue(mesh.vertNoiseAmount.value)
     .setSize(sliderSize[0], sliderSize[1])
     .setPosition(left, top);
     
-  noiseSpeedSlider = gui.addSlider("vertex_noise_speed")
+  vertNoiseSpeedSlider = gui.addSlider("vertex_noise_speed")
     .setLabel("VERTEX NOISE SPEED")
     .setRange(0.0, 1.0)
-    .setValue(mesh.vertexNoiseSpeed.value)
+    .setValue(mesh.vertNoiseSpeed.value)
     .setSize(sliderSize[0], sliderSize[1])
     .setPosition(left, top+sliderSize[1]*2);
     
+  fragNoiseAmountSlider = gui.addSlider("fragment_noise_amount")
+    .setLabel("FRAGMENT NOISE AMOUNT")
+    .setRange(0.0, 1.0)
+    .setValue(mesh.vertNoiseAmount.value)
+    .setSize(sliderSize[0], sliderSize[1])
+    .setPosition(left, top+sliderSize[1]*4);
+    
+  fragNoiseSpeedSlider = gui.addSlider("fragment_noise_speed")
+    .setLabel("FRAGMENT NOISE SPEED")
+    .setRange(0.0, 1.0)
+    .setValue(mesh.vertNoiseSpeed.value)
+    .setSize(sliderSize[0], sliderSize[1])
+    .setPosition(left, top+sliderSize[1]*6);
+        
   audioSensitivitySlider = gui.addSlider("audio_sensitivity")
     .setLabel("AUDIO SENSITIVITY")
     .setRange(0.0, 1.0)
     .setValue(1.0)
     .setSize(sliderSize[0], sliderSize[1])
-    .setPosition(left, top+sliderSize[1]*4);
+    .setPosition(left, top+sliderSize[1]*8);
     
   meshModeRadio = gui.addRadio("mesh_mode")
     .setLabel("MESH MODE")
-    .setPosition(left, top+sliderSize[1]*6)
+    .setPosition(left, top+sliderSize[1]*10)
     .setSize(sliderSize[1], sliderSize[1])
     .setItemsPerRow(2)
     .setSpacingColumn(70)
