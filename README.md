@@ -7,4 +7,3 @@ Requirements:
 - Processing Sound
 - PeasyCam
 - ControlP5
-- The MidiBus
