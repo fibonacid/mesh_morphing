@@ -128,10 +128,7 @@ void controlEvent(ControlEvent event) {
         lightIntensity = event.value();
         break;
    }
-   if (event.name() != "audio_indicator") {
-      // Ignore Events fired automatically at gui setup
-      if (millis() > 5000) {
-        println("[GUI Event]", event.name(),"=>",event.value()); 
-      }
+   if (event.name() != "audio_indicator") { // ignore audio indicator events
+        println("[GUI]\t"+event.name(),"=",event.value()); 
    }
 }

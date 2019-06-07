@@ -87,7 +87,11 @@ void setup() {
   // Initialize GUI
   createGUI(); // find me in gui tab
   
-  println("Press C to hide controls");
+  console.play(); // enable on screen messages
+  println("Hello ! Here are some instructions\n");
+  println("\t- Press C to hide controls");
+  println("\t- Press Shift to move camera around with your mouse");
+  println("\nHave fun ! :)");
 }
 
 void draw() {
