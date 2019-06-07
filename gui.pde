@@ -9,6 +9,7 @@ void createGUI() {
   gui.setColorBackground(0x66666666);
   gui.setColorForeground(0xBBBBBBBB);
   gui.setColorActive    (0xDDDDDDDD);
+  gui.setFont(createFont("Menlo-Regular", 10));
   
   // Set style variables
   int marginLeft   = 20;
