@@ -22,7 +22,7 @@ void createGUI() {
     
   myTextarea = gui.addTextarea("txt")
                   .setPosition(left+sliderSize[1]*2, bottom - 100)
-                  .setSize(width/2, 100)
+                  .setSize(width-marginRight-marginLeft-2*sliderSize[1], 100)
                   .setFont(createFont("", 10))
                   .setLineHeight(14)
                   .setColor(color(200))
