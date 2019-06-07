@@ -70,16 +70,17 @@ void setup() {
   camera.setMinimumDistance(mesh.SIZE*0.5);
   camera.setMaximumDistance(mesh.SIZE*10.);
    
- 
   // Initialize Audio
   audioIn = new AudioIn(this, 0);
   audioIn.start();
-  audioIndicator = new AudioIndicator(this, audioIn);
+  //audioIndicator = new AudioIndicator(this, audioIn);
   envf = new EnvelopeFollower(this, audioIn);
+  rms = new Amplitude(this);
   rms.input(audioIn);
   
   createGUI(); // Initialize GUI
-
+  
+  println("Press C to hide controls");
 }
 
 void draw() {
