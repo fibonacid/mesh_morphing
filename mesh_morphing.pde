@@ -86,8 +86,11 @@ void draw() {
   background(0);
 
   sceneClock = millis() * sceneClockSpeed; // set global clock
-
-  ambientLight(60, 60, 60);
+  
+  float b = 255*lightIntensity;
+  //directionalLight(b,b,b,mesh.position.x,mesh.position.y,mesh.position.z+200);
+  ambientLight(255*lightIntensity,255*lightIntensity,255*lightIntensity);
+  
   for (OrbitingLamp lamp : lamps) {
     lamp.move();
     lamp.update();
