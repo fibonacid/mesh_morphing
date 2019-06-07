@@ -17,8 +17,8 @@ JSONObject config;
 /* Session variables:
  * This variables can be overwritten through the file config/settings.json. */
 boolean _fullscreen_   = false;
-int     _width_        = 500;      // Window width in pixels
-int     _height_       = 500;      // Window height in pixels
+int     _width_        = 960;      // Window width in pixels
+int     _height_       = 720;      // Window height in pixels
 boolean _eco_          = false;    // Low resolution mode
 
 /* State variables */
