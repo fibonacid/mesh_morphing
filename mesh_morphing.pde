@@ -68,7 +68,9 @@ void setup() {
   
   // Initialize Scene
   mesh = new Mesh();
-  createLamps();
+  createLamps(); // find me below
+  
+  // Create Camera
   camera = new PeasyCam(this, mesh.position.x, mesh.position.y, mesh.position.z, 600);
   camera.setMinimumDistance(mesh.SIZE*0.5);
   camera.setMaximumDistance(mesh.SIZE*10.);
@@ -76,12 +78,13 @@ void setup() {
   // Initialize Audio
   audioIn = new AudioIn(this, 0);
   audioIn.start();
-  //audioIndicator = new AudioIndicator(this, audioIn);
+  
   envf = new EnvelopeFollower(this, audioIn);
   rms = new Amplitude(this);
   rms.input(audioIn);
   
-  createGUI(); // Initialize GUI
+  // Initialize GUI
+  createGUI(); // find me in gui tab
   
   println("Press C to hide controls");
 }
