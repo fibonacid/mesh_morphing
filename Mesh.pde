@@ -19,7 +19,7 @@ class Mesh {
   
    Mesh() {
      if (_eco_) { sphereDetail(30); }
-     else       { sphereDetail(100);  }   
+     else       { sphereDetail(150);  }   
      shape = createShape(SPHERE, SIZE);
      
      position = new PVector(width/2, height/2, 0);
