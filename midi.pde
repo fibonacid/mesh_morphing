@@ -2,7 +2,7 @@
  *
  */
 void controllerChange(int channel, int number, int value) {
-   //println("MIDI CC"+number+": "+value);
+   println("MIDI CC"+number+": "+value);
    switch(number) {
       case 1:
         break;
