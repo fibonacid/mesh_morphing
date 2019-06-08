@@ -15,6 +15,6 @@ Open a terminal and cd into the path you want this sketch to be located.
 Make sure you have installed all the above libraries.
 
 ## Usage
-Launch sketch by double clicking any .pde file in the directory.
-Use the graphic user interface to change some parameters of the scene.
+Launch sketch by double clicking any .pde file in the directory.  
+Use the graphic user interface to change some parameters of the scene.  
 Check out the on screen console for tips and shortcuts 
