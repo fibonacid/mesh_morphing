@@ -7,6 +7,7 @@ void loadConfig() {
     _width_ = config.getInt("width");
     _height_ = config.getInt("height");
     _eco_ = config.getBoolean("eco");
+    _texture_ = config.getString("texture");
     println("config file loaded succesfully");
   } catch (NullPointerException e) {
     JSONObject json = freshConfig();
@@ -24,6 +25,7 @@ JSONObject freshConfig() {
     json.setInt("width", _width_);
     json.setInt("height", _height_);
     json.setBoolean("eco", _eco_);
+    json.setString("texture", DEFAULT_TEXTURE);
     saveJSONObject(json, "config/settings.json");  
     return json;
 }

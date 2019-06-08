@@ -16,13 +16,16 @@ JSONObject config;
 /* Session variables:
  * This variables can be overwritten through the file config/settings.json. */
 boolean _fullscreen_   = false;
-int     _width_        = 960;      // Window width in pixels
-int     _height_       = 720;      // Window height in pixels
-boolean _eco_          = false;    // Low resolution mode
+int     _width_        = 960;            // Window width in pixels
+int     _height_       = 720;            // Window height in pixels
+boolean _eco_          = false;          // Low resolution mode
+
+final String DEFAULT_TEXTURE = "marble.jpg";
+String  _texture_            = DEFAULT_TEXTURE;
 
 /* State variables */
 boolean showControls = true;       // GUI visibility 
-float lightIntensity = 0.2;        // Brightness of the 3D scene
+Line lightIntensity;               // Brightness of the 3D scene
 float sceneClock = 0;              // Master clock of the scene
 float sceneClockSpeed = 0.1;       // Time scaling factor of the master clock
 
