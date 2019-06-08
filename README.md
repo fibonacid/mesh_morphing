@@ -1,6 +1,5 @@
 # Mesh Morphing
-
-A sketch to dive deep into the inner workings of a processing 3D scene.
+A sketch I made to learn more about the inner workings of Processing and OpenGL
 
 ## Requirements
 - Processing 3.x
