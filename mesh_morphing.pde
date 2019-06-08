@@ -72,6 +72,7 @@ void setup() {
   // Initialize Scene
   mesh = new Mesh();
   createLamps(); // find me below
+  lightIntensity = new Line(0.5);
   
   // Create Camera
   camera = new PeasyCam(this, mesh.position.x, mesh.position.y, mesh.position.z, 600);
@@ -103,7 +104,7 @@ void draw() {
 
   sceneClock = millis() * sceneClockSpeed; // set global clock
   
-  float b = 255*lightIntensity;
+  float b = 255*lightIntensity.value;
   ambientLight(b,b,b);
   
   // Update and apply lights

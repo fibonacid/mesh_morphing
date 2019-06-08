@@ -125,7 +125,7 @@ void controlEvent(ControlEvent event) {
         catch (Exception e) { println(e); }
         break;
       case "ambient_light":
-        lightIntensity = event.value();
+        lightIntensity.to(event.value(), 100000);
         break;
    }
    if (event.name() != "audio_indicator") { // ignore audio indicator events
