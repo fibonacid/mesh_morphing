@@ -52,6 +52,8 @@ RadioButton meshModeRadio;         //
 Textarea myTextarea;               //
 Println console;                   //
 StringList consoleQueue;           //
+String[] tips;
+String lastTip;
 
 /**
  * This function gets called right before setup.
@@ -94,9 +96,11 @@ void setup() {
   createGUI(); // find me in gui tab
   
   console.play(); // enable on screen messages
+  tips = loadStrings("tips.txt");
+  
   println("Hello ! Here are some instructions\n");
-  println("\t- Press C to hide controls");
-  println("\t- Press Alt to move camera around with your mouse");
+  if (tips.length >= 1) printTip(tips[0]); // find me in utils tab
+  if (tips.length >= 2) printTip(tips[1]); 
   println("\nHave fun ! :)\n");
   for (String line: consoleQueue) { println(line); }
 }

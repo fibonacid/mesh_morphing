@@ -170,3 +170,9 @@ class EnvelopeFollower {
     smoothingFactor = map(value, 0, 1, 0, 0.3);
   }
 }
+/**
+ *
+ */
+void printTip(String message) {
+  println("[TIP]\t"+message);
+}
