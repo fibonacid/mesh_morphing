@@ -7,7 +7,7 @@ import controlP5.*;
  *  author:        Lorenzo Rivosecchi                                                         *
  *  title:         mesh_morphing                                                              *
  *  description:   A sketch to dive deep into the inner workings of a processing 3D scene.    *
- *  version:       0.1.6                                                                      *
+ *  version:       0.1.7                                                                      *
  *  ----------------------------------------------------------------------------------------- */
 
 /* Configuration file */
