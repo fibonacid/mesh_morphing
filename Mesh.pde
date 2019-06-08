@@ -51,7 +51,7 @@ class Mesh {
       textureImage = loadImage("textures/"+DEFAULT_TEXTURE);
       // Add messages to queue
       consoleQueue.append("File "+_texture_+" doesn't exist.");
-      consoleQueue.append("Texture File reverted to default ("+DEFAULT_TEXTURE+")");
+      consoleQueue.append("Texture File reverted to default ("+DEFAULT_TEXTURE+")\n");
     }
     shape.setTexture(textureImage);
     shape.setStroke(false);
