@@ -9,7 +9,7 @@ class Mesh {
   private PVector rotationSpeed;       // Speed rotation of the shape         
   private final float SIZE = width/4;
 
-  private final PImage DEFAULT_TEXTURE = loadImage("textures/marble.jpg");  // Texture that will be attached to pshape by default 
+  private PImage textureImage;  // Texture that will be attached to pshape by default 
   
   /* The following shader objects are basically just customized versions of the shaders that processing use.                      *
    * Both share the same code to perform vertex displacement, the TEXLIGHT_SHADER wraps the object with a given texture,          *
@@ -44,7 +44,15 @@ class Mesh {
     
     // Construct a Shape
     shape = createShape(SPHERE, SIZE);
-    shape.setTexture(DEFAULT_TEXTURE);
+    
+    // Apply Texture
+    textureImage = loadImage("textures/"+_texture_);
+    if (textureImage == null) {
+      textureImage = loadImage("textures/"+DEFAULT_TEXTURE);
+      consoleQueue.append("file "+_texture_+" doesn't exist.");
+      consoleQueue.append("Texture File reverted to default ("+DEFAULT_TEXTURE+")");
+    }
+    shape.setTexture(textureImage);
     shape.setStroke(false);
   
     // Set motion coordinates
