@@ -10,6 +10,7 @@ A sketch I made to learn more about the inner workings of Processing and OpenGL
 ## Installation
 Open a terminal and cd into the path you want this sketch to be located.
 ```
+ cd your-path-of-choice
  git clone https://github.com/lorenzorivosecchi/mesh_morphing.git
 ```
 Make sure you have installed all the above libraries.
