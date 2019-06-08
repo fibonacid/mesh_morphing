@@ -13,7 +13,7 @@ Open a terminal and cd into the path you want this sketch to be located.
  cd your-path-of-choice
  git clone https://github.com/lorenzorivosecchi/mesh_morphing.git
 ```
-Make sure you have installed all the above libraries.
+Make sure you have installed all the libraries listed above, if you don't just add them using the Contribution Manager.
 
 ## Usage
 Launch sketch by double clicking any .pde file in the directory.  
