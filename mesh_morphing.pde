@@ -51,12 +51,14 @@ Slider audioIndicator;             //
 RadioButton meshModeRadio;         //
 Textarea myTextarea;               //
 Println console;                   //
+StringList consoleQueue;           //
 
 /**
  * This function gets called right before setup.
  * Here is possible to set window size using variables
  */
 void settings() {
+  consoleQueue = new StringList();
   // Load sketch configuration
   loadConfig();
   if (_fullscreen_) { 
@@ -95,7 +97,8 @@ void setup() {
   println("Hello ! Here are some instructions\n");
   println("\t- Press C to hide controls");
   println("\t- Press Alt to move camera around with your mouse");
-  println("\nHave fun ! :)");
+  println("\nHave fun ! :)\n");
+  for (String line: consoleQueue) { println(line); }
 }
 
 void draw() {
