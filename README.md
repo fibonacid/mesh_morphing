@@ -1,15 +1,46 @@
 # Mesh Morphing
-A simple sketch I made to find strategies for better code development in the Processing environment.
+A sketch I made to learn more about the inner workings of Processing and OpenGL
 
-## Introduction
-As all coders do I often find myself struggling with code management, that is particularly true with Processing which is a great tool but not very suitable for big projects. This happens because Processing puts experimentation and learning at its core, and that's probably why many people started coding with it, me included. But as I became more experienced i wanted to transition from writing simple sketches to building more robust applications.  
-So i decided to drop the Processing IDE for Eclipse and i looked into ways to implement an MVC design pattern (Model View Controller), one where it is applied separation of concerns between the data, its control and its presentation.
-That worked alright, but I didn't find myself particularly happy with the overall experience.
-Around that time i came to know web frameworks such as Ruby On Rails, ReactJS and NodeJS, and i was fascinated by the elegant solutions it provided to create more structured and at the same time enjoyable coding environment. So after a long break i found myself working with Processing again and decided to find my own "*The Rails Way*" of creating Processing applications.
-I'm not here to say I made something particularly intelligent or beautiful or event useful, but to formulate my own *best practices*.
+## Description
+This sketch involves a 3D Scene with a spherical shape as protagonist.
+The shape appearance is constantly changing due to a gradual displacement of its vertexes.
+This is done by plugging every vertex of the shape into a *perlin noise* function which will use the vertex coordinates to output a number between 0.0 and 1.0.
+These values will be used to push all the vertexes from their original position by some amount, therefore morphing the sphere into a less perfect, less boring shape.
 
-**So here is what i have done**
-todo
+This algorithm could be implemented in 2 ways:
+- Using the processing way through the PShape class methods
+- Modifying the rendering behavior through a **Vertex Shader**.
+
+In this case i preferred to go for the second approach.
+That's because a custom shader allow the program to perform all the vertex displacement calculations on the GPU, resulting in much higher performance.
+In addition to that I have found no way to access the vertexes of a PShape created like this `new PShape(SPHERE, x)`,
+so i would be stuck with having to create all my 3D shapes manually which could be time expensive and could result in less scalable code.
+
+Explaining openGL is well beyond the scope of this paper, so i'll leave some useful links for whomever would like to look into the topic with more depth.
+To give a glimpse of what a vertex shaders does we could say that they are small programs that have to put together vertexes to construct some geometry.
+These geometries will then be the source of other calculations that will end up being the image you see on the screen.
+
+```
+ attribute vec4 position;
+
+ uniform mat4 transformMatrix;
+ uniform float u_noise_amount;
+ uniform float u_time;
+
+ float noise(vec3 st) {...}
+
+ void main() {
+  float displacement = u_noise_amount * (noise(position.xyz + u_time) - 0.5);
+  gl_Position = transformMatrix * position + vec4(displacement);
+ }
+```
+
+Anyhow, here above is a simplified version of my vertex shader code; The language is called **GLSL**, which stands for OpenGL Shading Language.
+When you create a PShape and you place it on the canvas through `shape()`, this shader will be applied to all vertexes of the shape.
+So Processing will send the coordinates of a specific vertex through the `position` attribute. At the same time it will send some other parameters that are the same throughout all vertexes: these are `transformMatrix`, `u_noise_amount` and `u_time`.
+The main function is where calculations are done and the final position of the vertex is produced, this one is held in the `gl_Position` variable.
+
+
 
 ## Requirements
 - Processing 3.x
