@@ -1,2 +1,3 @@
 Press C to hide controls
 Press Alt to move camera around with your mouse
+This sketch is audio reactive
