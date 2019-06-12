@@ -19,7 +19,7 @@ Explaining openGL is well beyond the scope of this paper, so i'll leave some use
 To give a glimpse of what a vertex shaders does we could say that they are small programs that have to put together vertexes to construct some geometries.
 These geometries will then be the source of other calculations that will eventually result in a picture of the scene created.
 
-```
+```glsl
  attribute vec4 position;
 
  uniform mat4 transformMatrix;
@@ -49,7 +49,7 @@ The result of the noise is then multiplied by the uniform *u_noise_amount*, summ
 You should have noticed that i also set a variable `fragPosition` which is defined as a varying vector.
 Well this is because i decided to use the morphing effect to be also applied to the shape's texture, so by defining that variable as a varying type i exposed it to the **fragment shader**, which is another GLSL file that cooperates with the vertex shader to render color.
 
-```
+```glsl
 varying vec4 fragPosition;
 
 uniform float u_time;
