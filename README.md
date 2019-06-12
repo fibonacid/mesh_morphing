@@ -97,3 +97,7 @@ Make sure you have installed all the libraries listed above, if you don't just a
 Launch sketch by double clicking any `.pde" file in the directory.  
 Use the graphic user interface to change some parameters of the scene.  
 Check out the on screen console for tips and shortcuts
+
+
+---
+<sup>Developed by Lorenzo Rivosecchi in June 2019</sup>
