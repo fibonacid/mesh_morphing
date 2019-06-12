@@ -96,11 +96,13 @@ void setup() {
   createGUI(); // find me in gui tab
   
   console.play(); // enable on screen messages
-  tips = loadStrings("tips.txt");
   
-  println("Hello ! Here are some instructions\n");
-  if (tips.length >= 1) printTip(tips[0]); // find me in utils tab
-  if (tips.length >= 2) printTip(tips[1]); 
+  // Print some tips
+  tips = loadStrings("tips.txt");
+  if (tips.length > 0) println("Hello, here are some tips\n");
+  for(String tip: tips) {
+    printTip(tip); // find me in utils tab
+  }
   println("\nHave fun ! :)\n");
   for (String line: consoleQueue) { println(line); }
 }
