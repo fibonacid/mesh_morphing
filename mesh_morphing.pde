@@ -7,7 +7,7 @@ import controlP5.*;
  *  author:        Lorenzo Rivosecchi                                                         *
  *  title:         mesh_morphing                                                              *
  *  description:   An interactive 3D scene with a morphing sphere.                            *
- *  version:       0.1.8                                                                      *
+ *  version:       0.1.9                                                                      *
  *  ----------------------------------------------------------------------------------------- */
 
 /* Configuration file */
