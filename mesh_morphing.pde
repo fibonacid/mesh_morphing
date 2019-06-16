@@ -7,7 +7,7 @@ import controlP5.*;
  *  author:        Lorenzo Rivosecchi                                                         *
  *  title:         mesh_morphing                                                              *
  *  description:   An interactive 3D scene with a morphing sphere.                            *
- *  version:       0.2.0                                                                      *
+ *  version:       0.2.1                                                                      *
  *  ----------------------------------------------------------------------------------------- */
 
 /* Configuration file */
@@ -133,7 +133,9 @@ void draw() {
     camera.beginHUD();
     // 2D Code here
     audioIndicator.setValue(rms.analyze()); // visualize audio level
-    gui.draw();
+    try { gui.draw(); }
+    catch (Exception e) { e.printStackTrace(); }
+    
     camera.endHUD();
   }
 }
