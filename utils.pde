@@ -141,7 +141,7 @@ class EnvelopeFollower {
   Amplitude rms;
   float smoothingFactor = 0.25;
   private float value;
-  private float record = 0.0;
+  private float record = 0.001;
   
   /**
    *
