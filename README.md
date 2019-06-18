@@ -84,12 +84,15 @@ To mix the colors i used the glsl *mix* function which performs linear interpola
 The linearity of the mix function is distorted through another glsl function called *smoothstep* which implements Hermite polynomial interpolation, this one will use the u_noise_amount uniform to define the steepness of its slope.
 
 ## Conclusions
-I think the architectural approach I used to develope this application is strong, so many features could come in future releases. Here is a list of improvements I plan to make:
+I think that the structure of this sketch is strong, so there is plenty of space for new features in the future.  
+Here are some of them:
 - Color slider to change the colors of the textures
 - Midi support with custom mapping through the settings.json file
 - Video Export and Screenshot support
-- Fix [issue #1](https://github.com/lorenzorivosecchi/mesh_morphing/issues/1)
 - Drop controlP5 deprecated methods
+- Fix [issue #1](https://github.com/lorenzorivosecchi/mesh_morphing/issues/1)
+
+<div style="page-break-after: always;"></div>
 
 ## Requirements
 - Processing 3.5.x
@@ -118,3 +121,4 @@ Check out the on screen console for tips and shortcuts
 
 ---
 <sup>Developed by Lorenzo Rivosecchi in June 2019</sup>
+<sup>https://github.com/lorenzorivosecchi/mesh_morphing</sup>
