@@ -1,6 +1,12 @@
 # Mesh Morphing
 An interactive 3D scene with a morphing sphere.
 
+## Introduction
+I made this sketch to create some visuals to use in a live performance.
+This sketch is audio reactive and has some parameters which are accessible from a graphic user interface and, in a future release from a MIDI controller.
+I decided to use a configuration file to set some aspects of my sketch that could vary from scenario to scenario, so for example at this time I could change the dimensions of the window, set it fullscreen, get the application to run in eco mode and so on.
+No one likes laggy visuals, so i decided to write my own shaders to achieve greater performance and scalability.
+
 ## Description
 This sketch involves a 3D Scene with a spherical shape as protagonist.
 The shape appearance is constantly changing due to a gradual displacement of its vertexes.
@@ -77,10 +83,16 @@ I also included some uniforms to be able to tweak the shader from the outside in
 To mix the colors i used the glsl *mix* function which performs linear interpolation of color values.
 The linearity of the mix function is distorted through another glsl function called *smoothstep* which implements Hermite polynomial interpolation, this one will use the u_noise_amount uniform to define the steepness of its slope.
 
-
+##Conclusions
+I think the architectural approach I used to develope this application is strong, so many features could come in future releases. Here is a list of improvements I plan to make:
+- Color slider to change the colors of the textures
+- Midi support with custom mapping through the settings.json file
+- Video Expport and Screenshot support
+- Fix [issue #1](https://github.com/lorenzorivosecchi/mesh_morphing/issues/1)
+- Drop controlP5 deprecated methods
 
 ## Requirements
-- Processing 3.x
+- Processing 3.5.x
 - Processing Sound
 - PeasyCam
 - ControlP5
@@ -94,10 +106,15 @@ Open a terminal and cd into the path you want this sketch to be located.
 Make sure you have installed all the libraries listed above, if you don't just add them using the Contribution Manager.
 
 ## Usage
-Launch sketch by double clicking any `.pde" file in the directory.  
+Launch sketch by double clicking any `.pde` file in the directory.  
 Use the graphic user interface to change some parameters of the scene.  
 Check out the on screen console for tips and shortcuts
 
+## Reference
+- [Shaders - Andrea Colubri](https://processing.org/tutorials/pshader/)
+- [The Book of Shaders](https://thebookofshaders.com/?lan=it)
+- [Shaderific](http://www.shaderific.com)
+- [controlP5](http://www.sojamo.de/libraries/controlP5/)
 
 ---
 <sup>Developed by Lorenzo Rivosecchi in June 2019</sup>
