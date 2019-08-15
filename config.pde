@@ -8,6 +8,8 @@ void loadConfig() {
     _height_ = config.getInt("height");
     _eco_ = config.getBoolean("eco");
     _texture_ = config.getString("texture");
+    _export_filename_ = config.getString("export_filename");
+    _export_quality_ = config.getString("export_quality");
     println("config file loaded succesfully");
   } catch (NullPointerException e) {
     JSONObject json = freshConfig();
