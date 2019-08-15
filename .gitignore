@@ -37,3 +37,6 @@ out/
 #*.PNG
 *.mov
 *.MOV
+
+# Ignore Library Files
+lib
