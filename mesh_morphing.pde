@@ -1,7 +1,10 @@
-import peasy.PeasyCam;
 import processing.sound.*;
 import processing.video.*;
+import com.hamoid.*;
+import peasy.PeasyCam;
 import controlP5.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /** ----------------------------------------------------------------------------------------- *
  *  author:        Lorenzo Rivosecchi                                                         *
@@ -15,10 +18,12 @@ JSONObject config;
 
 /* Session variables:
  * This variables can be overwritten through the file config/settings.json. */
-boolean _fullscreen_   = false;
-int     _width_        = 960;            // Window width in pixels
-int     _height_       = 720;            // Window height in pixels
-boolean _eco_          = false;          // Low resolution mode
+boolean _fullscreen_ = false;
+int     _width_ = 960;             // Window width in pixels
+int     _height_ = 720;             // Window height in pixels
+boolean _eco_ = false;           // Low resolution mode
+String _export_filename_ = "mesh_morphing.mp4";
+String _export_quality_ = "standard";
 
 final String DEFAULT_TEXTURE = "marble.jpg";
 String  _texture_            = DEFAULT_TEXTURE;
@@ -39,6 +44,11 @@ AudioIn audioIn;                   // Audio Input
 Amplitude rms;                     // RMS Analyzer
 EnvelopeFollower envf;             // 
 
+// Video Export
+VideoExport videoExport;
+boolean isRecording = false;
+String exportDir = "./exports/";
+
 /* GUI */
 ControlP5 gui;                     // Graphic User Interface
 Slider vertNoiseAmountSlider;      //
@@ -49,11 +59,14 @@ Slider audioSensitivitySlider;     //
 Slider ambientLightSlider;         //
 Slider audioIndicator;             //
 RadioButton meshModeRadio;         //
+Toggle recordToggle;
 Textarea myTextarea;               //
 Println console;                   //
 StringList consoleQueue;           //
 String[] tips;
 String lastTip;
+
+DateTimeFormatter fileDTF = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm");
 
 /**
  * This function gets called right before setup.
@@ -95,6 +108,10 @@ void setup() {
   // Initialize GUI
   createGUI(); // find me in gui tab
   
+  // Initialize VideoExport
+  String path = exportDir + _export_filename_ + ".mp4";
+  videoExport = new VideoExport(this, path);
+  
   console.play(); // enable on screen messages
   
   // Print some tips
@@ -128,6 +145,15 @@ void draw() {
   mesh.scale(envf.getValue());
   mesh.rotate();
   mesh.display();
+  
+  // If recording has been activated
+  if (isRecording) {
+     try {
+       videoExport.saveFrame(); 
+     } catch (Error error) {
+       error.printStackTrace();
+     }
+  }
   
   if (showControls) {
     camera.beginHUD();
