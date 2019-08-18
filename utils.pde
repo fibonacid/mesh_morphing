@@ -50,7 +50,7 @@ class Line implements Runnable {
             float angle = (destination - value) / duration;
             value = value + angle * time; 
           } else {
-             //<>//
+ //<>//
           }
           Thread.sleep(SLEEP_TIME);
         } catch (Exception e) {
