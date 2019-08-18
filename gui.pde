@@ -101,9 +101,9 @@ void createGUI() {
        
   recordToggle = gui.addToggle("record")
     .setLabel("RECORD")
+    .setState(false)
     .setPosition(right - buttonSize, top)
     .setSize(buttonSize, buttonSize)
-    //.setColor(color(200))
     .setColorBackground(color(255, 0, 0))
     .setColorForeground(color(255, 0, 0));
     
@@ -138,6 +138,13 @@ void controlEvent(ControlEvent event) {
         break;
       case "ambient_light":
         lightIntensity.to(event.value(), 100000);
+        break;
+      case "record": //<>//
+        if (recordToggle.getState()) {
+          startRecording();
+        } else {
+          stopRecording();
+        }
         break;
    }
    if (event.name() != "audio_indicator") { // ignore audio indicator events
