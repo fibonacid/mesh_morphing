@@ -47,7 +47,7 @@ EnvelopeFollower envf;             //
 // Video Export
 VideoExport videoExport;
 boolean isRecording = false;
-String exportDir = "./exports/";
+String exportDir = "exports/";
 
 /* GUI */
 ControlP5 gui;                     // Graphic User Interface
@@ -66,6 +66,7 @@ StringList consoleQueue;           //
 String[] tips;
 String lastTip;
 
+// Utils
 DateTimeFormatter fileDTF = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm");
 
 /**
@@ -81,11 +82,15 @@ void settings() {
   } else { 
     size(_width_, _height_, P3D);
   }
+  // Initialize VideoExport
+  String path = exportDir + _export_filename_ + ".mp4";
+  videoExport = new VideoExport(this, "test.mp4");
+  videoExport.startMovie();
 }
 
 /** */
 void setup() {
-  
+    
   // Initialize Scene
   mesh = new Mesh();
   createLamps(); // find me below
@@ -107,11 +112,7 @@ void setup() {
   
   // Initialize GUI
   createGUI(); // find me in gui tab
-  
-  // Initialize VideoExport
-  String path = exportDir + _export_filename_ + ".mp4";
-  videoExport = new VideoExport(this, path);
-  
+    
   console.play(); // enable on screen messages
   
   // Print some tips
