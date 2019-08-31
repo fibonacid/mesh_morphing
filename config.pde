@@ -31,3 +31,12 @@ JSONObject freshConfig() {
     saveJSONObject(json, "config/settings.json");  
     return json;
 }
+
+void loadEnvironment() {
+  try {
+    ENV = loadJSONObject("env.json");
+    ENV_FORGET_FFMPEG = ENV.getBoolean("FORGET_FFMPEG") ? ENV.getBoolean("FORGET_FFMPEG") : true;
+  } catch (NullPointerException e) {
+    e.printStackTrace();
+  }
+}

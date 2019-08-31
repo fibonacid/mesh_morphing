@@ -16,6 +16,10 @@ import java.time.format.DateTimeFormatter;
 /* Configuration file */
 JSONObject config;
 
+/* Environment */
+JSONObject ENV;
+boolean ENV_FORGET_FFMPEG;
+
 /* Session variables:
  * This variables can be overwritten through the file config/settings.json. */
 boolean _fullscreen_ = false;
@@ -75,8 +79,11 @@ DateTimeFormatter fileDTF = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm");
  */
 void settings() {
   consoleQueue = new StringList();
+  
   // Load sketch configuration
   loadConfig();
+  loadEnvironment();
+  
   if (_fullscreen_) { 
     fullScreen(P3D);
   } else { 
