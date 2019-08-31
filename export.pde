@@ -7,14 +7,21 @@ void startRecording() {
  String timestamp = fileDTF.format(now);
  String path = exportDir + _export_filename_ + timestamp + ".mp4";
  videoExport.setMovieFileName(path);
-   try {
-    isRecording = true;
-  }
-  catch (Error e) {
-    e.printStackTrace(); 
-  }
+ isRecording = true;
+ videoExport.startMovie();
  println("\nVideo Export: Recording Started");
  println("===============================");
+}
+
+/**
+ * RECORDING PROGRESS
+ * ==================
+ */
+String recordingProgress() {
+    float seconds = videoExport.getCurrentTime();
+    String duration = formatDuration((long)seconds);
+    println("[RECORDING]\ttimeo:\t"+duration+" ("+seconds+"s)");
+    return duration;
 }
 
 /**
@@ -22,15 +29,10 @@ void startRecording() {
  * ===============
  */
 void stopRecording() {
-  try {
-    videoExport.endMovie();
-    isRecording = false;
-  }
-  catch (Error e) {
-    e.printStackTrace(); 
-  }
   videoExport.endMovie();
+  isRecording = false;
   println("\nVideo Export: Recording Ended");
+  println("duration:\t"+recordingProgress());
   println("===============================");
 }
 
@@ -45,13 +47,4 @@ void setupVideoExport() {
     videoExport.forgetFfmpegPath();
     println("Ffmpeg binary location forgotten:\t"+videoExport.getFfmpegPath());
   } 
-  try {
-     videoExport.startMovie(); 
-     // If by now no errors were raised:
-     if (ENV_FORGET_FFMPEG) {
-       ENV.setBoolean("FORGET_FFMPEG", false);
-     }
-  } catch(NullPointerException e) {
-     e.printStackTrace();
-  }
 }

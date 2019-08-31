@@ -4,6 +4,7 @@ import com.hamoid.*;
 import peasy.PeasyCam;
 import controlP5.*;
 import java.time.LocalDateTime;
+import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 
 /** ----------------------------------------------------------------------------------------- *
@@ -26,7 +27,7 @@ boolean _fullscreen_ = false;
 int     _width_ = 960;             // Window width in pixels
 int     _height_ = 720;             // Window height in pixels
 boolean _eco_ = false;           // Low resolution mode
-String _export_filename_ = "mesh_morphing.mp4";
+String _export_filename_ = "mesh_morphing";
 String _export_quality_ = "standard";
 
 final String DEFAULT_TEXTURE = "marble.jpg";
@@ -51,7 +52,9 @@ EnvelopeFollower envf;             //
 // Video Export
 VideoExport videoExport;
 boolean isRecording = false;
-String exportDir = "exports/";
+String exportDir = "export/";
+float recorderSampleTime = 0;
+float recorderNextSampleTime = 0;
 
 /* GUI */
 ControlP5 gui;                     // Graphic User Interface
@@ -89,9 +92,6 @@ void settings() {
   } else { 
     size(_width_, _height_, P3D);
   }
-  // Initialize VideoExport
-  String path = exportDir + _export_filename_ + ".mp4";
-  videoExport = new VideoExport(this, "test.mp4");
 }
 
 /** */
@@ -123,8 +123,6 @@ void setup() {
    * the gui console of the sketch */
   console.play();
   
-  /* Setup video recording system */
-  setupVideoExport();
    
   // Print some tips
   tips = loadStrings("tips.txt");
@@ -134,6 +132,10 @@ void setup() {
   }
   println("\nHave fun ! :)\n");
   for (String line: consoleQueue) { println(line); }
+  
+  // Initialize VideoExport
+  videoExport = new VideoExport(this);
+  setupVideoExport();
 }
 
 void draw() {
@@ -161,19 +163,41 @@ void draw() {
   // If recording has been activated
   if (isRecording) {
      try {
-       videoExport.saveFrame(); 
-     } catch (Error error) {
+       // Save current frame
+       videoExport.saveFrame();
+       // Show duration of movie
+       recorderSampleTime = millis();
+       if (recorderSampleTime > recorderNextSampleTime) {
+         recordingProgress();
+         recorderNextSampleTime = recorderSampleTime + 1000;
+       }
+     } // If an error is raised:
+     catch (Error error) {
+       // Print it but keep sketch running
        error.printStackTrace();
      }
   }
   
+  // If user has choose to see the controls
   if (showControls) {
+    // Call this method to keep the 3D camera from
+    // affecting the 2D display of the GUI.
     camera.beginHUD();
-    // 2D Code here
-    audioIndicator.setValue(rms.analyze()); // visualize audio level
-    try { gui.draw(); }
-    catch (Exception e) { e.printStackTrace(); }
-    
+    // ----------------
+    //  2D FIX ENABLED
+    // ----------------
+    // visualize audio level
+    audioIndicator.setValue(rms.analyze());
+    try {
+      // Draw GUI
+      gui.draw(); 
+    }
+    catch (Exception e) {
+      e.printStackTrace(); 
+    }
+    // -----------------
+    //  2D FIX DISABLED
+    // -----------------
     camera.endHUD();
   }
 }
