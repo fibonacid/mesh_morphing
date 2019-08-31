@@ -103,13 +103,15 @@ void createGUI() {
     .setLabel("RECORD")
     .setState(false)
     .setPosition(right - buttonSize, top)
-    .setSize(buttonSize, buttonSize)
-    .setColorBackground(color(255, 0, 0))
-    .setColorForeground(color(255, 0, 0));
+    .setSize(buttonSize, buttonSize);
+    //.setColorBackground(color(255, 0, 0))
+    //.setColorForeground(color(255, 0, 0));
     
   recordToggle.getCaptionLabel()
     .align(ControlP5.LEFT_OUTSIDE, CENTER)
     .getStyle().setPaddingLeft(-10);
+  
+  
 }
 
 /**
