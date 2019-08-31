@@ -27,7 +27,7 @@ config/settings.json
 scratches
 
 # Some specific to my workflow
-out/
+export/
 #*.jpg
 #*.JPG
 #*.tiff
@@ -40,3 +40,9 @@ out/
 
 # Ignore Library Files
 lib
+
+# Ignore Env file
+env.json
+
+# Ignore ffmpeg logs
+ffmpeg.txt
