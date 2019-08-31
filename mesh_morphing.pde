@@ -92,12 +92,11 @@ void settings() {
   // Initialize VideoExport
   String path = exportDir + _export_filename_ + ".mp4";
   videoExport = new VideoExport(this, "test.mp4");
-  videoExport.startMovie();
 }
 
 /** */
 void setup() {
-    
+  
   // Initialize Scene
   mesh = new Mesh();
   createLamps(); // find me below
@@ -118,10 +117,15 @@ void setup() {
   rms.input(audioIn);
   
   // Initialize GUI
-  createGUI(); // find me in gui tab
-    
-  console.play(); // enable on screen messages
+  createGUI();
+      
+  /* From this line on println will appear on 
+   * the gui console of the sketch */
+  console.play();
   
+  /* Setup video recording system */
+  setupVideoExport();
+   
   // Print some tips
   tips = loadStrings("tips.txt");
   if (tips.length > 0) println("Hello, here are some tips\n");
