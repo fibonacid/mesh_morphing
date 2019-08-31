@@ -141,7 +141,7 @@ void controlEvent(ControlEvent event) {
       case "ambient_light":
         lightIntensity.to(event.value(), 100000);
         break;
-      case "record": //<>//
+      case "record":
         if (recordToggle.getState()) {
           startRecording();
         } else {
