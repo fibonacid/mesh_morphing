@@ -10,12 +10,12 @@ void loadConfig() {
     _texture_ = config.getString("texture");
     _export_filename_ = config.getString("export_filename");
     _export_quality_ = config.getString("export_quality");
-    println("config file loaded succesfully");
+    println("Configuration file loaded succesfully\n");
   } catch (NullPointerException e) {
     JSONObject json = freshConfig();
     saveJSONObject(json, "config/settings.json");  
     println("Created new config file with default values");
-    println("find me in config/settings.json");
+    println("\tfind me in config/settings.json\n");
   } catch (Exception e) {
     e.printStackTrace();
   }
