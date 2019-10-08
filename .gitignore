@@ -26,14 +26,23 @@ web-export/
 config/settings.json
 scratches
 
-# Some specific to my workflow
-out/
-#*.jpg
-#*.JPG
-#*.tiff
-#*.tif
-#*.TIFF
-#*.png
-#*.PNG
+# Large files
+export/
+*.jpg
+*.JPG
+*.tiff
+*.tif
+*.TIFF
+*.png
+*.PNG
 *.mov
 *.MOV
+
+# Libraries
+lib
+
+# Environment
+env.json
+
+# Logs
+ffmpeg.txt
