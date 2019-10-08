@@ -67,7 +67,7 @@ Slider audioSensitivitySlider;     //
 Slider ambientLightSlider;         //
 Slider audioIndicator;             //
 RadioButton meshModeRadio;         //
-Toggle recordToggle;
+Toggle recordToggle;               //
 Textarea myTextarea;               //
 Println console;                   //
 StringList consoleQueue;           //
