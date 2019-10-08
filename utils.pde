@@ -46,11 +46,11 @@ class Line implements Runnable {
      while(true) {
         try {
           float time = delta();
-          if (time <= duration) { //<>//
+          if (time <= duration) { //<>// //<>//
             float angle = (destination - value) / duration;
             value = value + angle * time; 
           }
-          Thread.sleep(SLEEP_TIME); //<>//
+          Thread.sleep(SLEEP_TIME); //<>// //<>//
         } catch (Exception e) {
           e.printStackTrace();
         }
