@@ -98,6 +98,10 @@ void createGUI() {
     .setSpacingColumn(70)
     .addItem("MATERIAL", Mesh.WITH_TEXTURE)
     .addItem("ABSTRACT", Mesh.NO_TEXTURE);
+    
+  colorWheel = gui.addColorWheel("tint")
+    .setLabel("TINT")
+    .setPosition(left, top+sliderSize[1] * 12);
        
   recordToggle = gui.addToggle("record")
     .setLabel("RECORD")
@@ -140,6 +144,12 @@ void controlEvent(ControlEvent event) {
         break;
       case "ambient_light":
         lightIntensity.to(event.value(), 100000);
+        break;
+      case "tint":
+        float r = colorWheel.r() / 255f;
+        float g = colorWheel.g() / 255f;
+        float b = colorWheel.b() / 255f;
+        mesh.setFragTintColor(r,g,b, 5000);
         break;
       case "record":
         if (recordToggle.getState()) {

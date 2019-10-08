@@ -69,6 +69,7 @@ Slider audioIndicator;             //
 RadioButton meshModeRadio;         //
 Toggle recordToggle;               //
 Textarea myTextarea;               //
+ColorWheel colorWheel;
 Println console;                   //
 StringList consoleQueue;           //
 String[] tips;
@@ -228,6 +229,9 @@ void keyPressed() {
   } 
 }
 
+/**
+ *
+ */
 void keyReleased() {
   if (key == CODED) {
     if (keyCode == ALT) {
