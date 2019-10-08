@@ -46,5 +46,11 @@ void setupVideoExport() {
     // Make videoExport ask again for it
     videoExport.forgetFfmpegPath();
     println("Ffmpeg binary location forgotten:\t"+videoExport.getFfmpegPath());
-  } 
+  }
+  // If user set a path for the ffmpeg binary file
+  if (ENV_FFMPEG_PATH != null && 
+      !ENV_FFMPEG_PATH.isEmpty()) {
+    videoExport.setFfmpegPath(ENV_FFMPEG_PATH);
+    println("Ffmpeg binary path:", ENV_FFMPEG_PATH);
+  }
 }
