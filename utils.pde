@@ -46,18 +46,27 @@ class Line implements Runnable {
      while(true) {
         try {
           float time = delta();
-          if (time <= duration) { //<>// //<>//
+          if (time <= duration) { //<>//
             float angle = (destination - value) / duration;
             value = value + angle * time; 
-          } else {
- //<>// //<>//
           }
-          Thread.sleep(SLEEP_TIME);
+          Thread.sleep(SLEEP_TIME); //<>//
         } catch (Exception e) {
           e.printStackTrace();
         }
      } 
   }
+}
+
+/**
+ *
+ */
+float[] lineArrayToVector(Line[] lines) {
+    float[] values = new float[lines.length];
+    for(int i = 0; i < values.length; i++) {
+       values[i] = lines[i].value; 
+    }
+    return values;
 }
 
 /**

@@ -32,6 +32,7 @@ varying vec4 fragPosition;
 uniform float u_time;
 uniform float u_frag_noise_amount;
 uniform float u_frag_noise_speed;
+uniform vec3 u_frag_tint_color;
 
 //	Classic Perlin 3D Noise
 //	by Stefan Gustavson
@@ -132,7 +133,7 @@ void main() {
   float noise_amount = 1.0 - 0.8 * u_frag_noise_amount;
   float noise = fmb(fragPosition.xyz * noise_freq + u_time * 0.01);
 
-  vec4 colorA = vec4(0.0, 0.0, 1.0, 1.);
+  vec4 colorA = vec4(u_frag_tint_color.rgb, 1.0);
   vec4 colorB = vec4(1.0) - colorA;
   vec4 color  = mix(colorA, colorB, smoothstep(0.0, noise_amount, noise));
   color *= brightness;

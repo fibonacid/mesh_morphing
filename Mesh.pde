@@ -30,6 +30,11 @@ class Mesh {
   private final Line vertNoiseSpeed  = new Line(0.5);   // frequency of the vertex displacement
   private final Line fragNoiseAmount = new Line(1.0);   // sharpness of the noise texture
   private final Line fragNoiseSpeed  = new Line(0.5);   // frequency of the noise texture
+  private final Line[] fragTintColor = {
+    new Line(random(0,1)), // Red
+    new Line(random(0,1)), // Green
+    new Line(random(0,1))  // Blue
+  };
 
   /**
    * Constructor of the class
@@ -76,6 +81,8 @@ class Mesh {
     if (currentShader.equals(LIGHT_SHADER)) {
       currentShader.set("u_frag_noise_amount", fragNoiseAmount.value);
       currentShader.set("u_frag_noise_speed", fragNoiseSpeed.value);
+      float[] tint = lineArrayToVector(fragTintColor);
+      currentShader.set("u_frag_tint_color", tint[0], tint[1], tint[2]);
     }
   }
   
@@ -138,8 +145,7 @@ class Mesh {
     if (currentShader.equals(LIGHT_SHADER)) {
       fragNoiseAmount.to(value, time); 
     } else {
-      println("This parameter doens't apply to the current shader");
-      println("Hit ABSTRACT to see results");
+      doesntApply();
     }
   }
 
@@ -147,9 +153,25 @@ class Mesh {
     if (currentShader.equals(LIGHT_SHADER)) {
       fragNoiseSpeed.to(value, time); 
     } else {
-      println("This parameter doens't apply to the current shader");
-      println("Hit ABSTRACT to see results");
+      doesntApply();
     } 
+  }
+  
+  /**
+   * 
+   */
+  void setFragTintColor(float r, float g, float b, float time) {
+    if (currentShader.equals(LIGHT_SHADER)) {
+      fragTintColor[0].to(r, time);
+      fragTintColor[1].to(g, time);
+      fragTintColor[2].to(b, time);
+    } else {
+      doesntApply();
+    } 
+  }
+  
+  void doesntApply() {
+    println("This parameter doens't apply to the current shader");
   }
 
   void scale(float value) { currentShader.set("u_scale", value); }
