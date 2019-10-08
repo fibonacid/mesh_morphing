@@ -44,5 +44,11 @@ lib
 # Environment
 env.json
 
-# Logs
+# Ignore Library Files
+lib
+
+# Ignore Env file
+env.json
+
+# Ignore ffmpeg logs
 ffmpeg.txt

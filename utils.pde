@@ -46,11 +46,11 @@ class Line implements Runnable {
      while(true) {
         try {
           float time = delta();
-          if (time <= duration) { //<>//
+          if (time <= duration) { //<>// //<>//
             float angle = (destination - value) / duration;
             value = value + angle * time; 
           } else {
-             //<>//
+ //<>// //<>//
           }
           Thread.sleep(SLEEP_TIME);
         } catch (Exception e) {
@@ -134,7 +134,8 @@ float sharpLFO(float freq) {
 }
 
 /**
- *
+ * ENVELOPE FOLLOWER
+ * =================
  */
 class EnvelopeFollower {
 
@@ -170,9 +171,19 @@ class EnvelopeFollower {
     smoothingFactor = map(value, 0, 1, 0, 0.3);
   }
 }
+
 /**
- *
+ * PRINT TIP
+ * ===============
  */
 void printTip(String message) {
   println("[TIP]\t"+message);
+}
+
+/**
+ * FORMAT DURATION
+ * ===============
+ */
+String formatDuration(long s) {
+ return String.format("%d:%02d:%02d", s / 3600, (s % 3600) / 60, (s % 60)); 
 }

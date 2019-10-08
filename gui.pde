@@ -22,6 +22,7 @@ void createGUI() {
   int bottom = height - marginBottom;
   
   int[] sliderSize = {140, 14};
+  int buttonSize = 14;
     
   myTextarea = gui.addTextarea("txt")
                   .setPosition(left+sliderSize[1]*4, bottom - 100)
@@ -98,6 +99,19 @@ void createGUI() {
     .addItem("MATERIAL", Mesh.WITH_TEXTURE)
     .addItem("ABSTRACT", Mesh.NO_TEXTURE);
        
+  recordToggle = gui.addToggle("record")
+    .setLabel("RECORD")
+    .setState(false)
+    .setPosition(right - buttonSize, top)
+    .setSize(buttonSize, buttonSize);
+    //.setColorBackground(color(255, 0, 0))
+    //.setColorForeground(color(255, 0, 0));
+    
+  recordToggle.getCaptionLabel()
+    .align(ControlP5.LEFT_OUTSIDE, CENTER)
+    .getStyle().setPaddingLeft(-10);
+  
+  
 }
 
 /**
@@ -126,6 +140,13 @@ void controlEvent(ControlEvent event) {
         break;
       case "ambient_light":
         lightIntensity.to(event.value(), 100000);
+        break;
+      case "record":
+        if (recordToggle.getState()) {
+          startRecording();
+        } else {
+          stopRecording();
+        }
         break;
    }
    if (event.name() != "audio_indicator") { // ignore audio indicator events

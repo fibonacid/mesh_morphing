@@ -1,7 +1,11 @@
-import peasy.PeasyCam;
 import processing.sound.*;
 import processing.video.*;
+import com.hamoid.*;
+import peasy.PeasyCam;
 import controlP5.*;
+import java.time.LocalDateTime;
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 
 /** ----------------------------------------------------------------------------------------- *
  *  author:        Lorenzo Rivosecchi                                                         *
@@ -13,12 +17,19 @@ import controlP5.*;
 /* Configuration file */
 JSONObject config;
 
+/* Environment */
+JSONObject ENV;
+boolean ENV_FORGET_FFMPEG;
+String ENV_FFMPEG_PATH;
+
 /* Session variables:
  * This variables can be overwritten through the file config/settings.json. */
-boolean _fullscreen_   = false;
-int     _width_        = 960;            // Window width in pixels
-int     _height_       = 720;            // Window height in pixels
-boolean _eco_          = false;          // Low resolution mode
+boolean _fullscreen_ = false;
+int     _width_ = 960;             // Window width in pixels
+int     _height_ = 720;             // Window height in pixels
+boolean _eco_ = false;           // Low resolution mode
+String _export_filename_ = "mesh_morphing";
+String _export_quality_ = "standard";
 
 final String DEFAULT_TEXTURE = "marble.jpg";
 String  _texture_            = DEFAULT_TEXTURE;
@@ -39,6 +50,13 @@ AudioIn audioIn;                   // Audio Input
 Amplitude rms;                     // RMS Analyzer
 EnvelopeFollower envf;             // 
 
+// Video Export
+VideoExport videoExport;
+boolean isRecording = false;
+String exportDir = "export/";
+float recorderSampleTime = 0;
+float recorderNextSampleTime = 0;
+
 /* GUI */
 ControlP5 gui;                     // Graphic User Interface
 Slider vertNoiseAmountSlider;      //
@@ -49,11 +67,15 @@ Slider audioSensitivitySlider;     //
 Slider ambientLightSlider;         //
 Slider audioIndicator;             //
 RadioButton meshModeRadio;         //
+Toggle recordToggle;               //
 Textarea myTextarea;               //
 Println console;                   //
 StringList consoleQueue;           //
 String[] tips;
 String lastTip;
+
+// Utils
+DateTimeFormatter fileDTF = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm");
 
 /**
  * This function gets called right before setup.
@@ -61,8 +83,11 @@ String lastTip;
  */
 void settings() {
   consoleQueue = new StringList();
+  
   // Load sketch configuration
   loadConfig();
+  loadEnvironment();
+  
   if (_fullscreen_) { 
     fullScreen(P3D);
   } else { 
@@ -93,10 +118,13 @@ void setup() {
   rms.input(audioIn);
   
   // Initialize GUI
-  createGUI(); // find me in gui tab
+  createGUI();
+      
+  /* From this line on println will appear on 
+   * the gui console of the sketch */
+  console.play();
   
-  console.play(); // enable on screen messages
-  
+   
   // Print some tips
   tips = loadStrings("tips.txt");
   if (tips.length > 0) println("Hello, here are some tips\n");
@@ -105,6 +133,10 @@ void setup() {
   }
   println("\nHave fun ! :)\n");
   for (String line: consoleQueue) { println(line); }
+  
+  // Initialize VideoExport
+  videoExport = new VideoExport(this);
+  setupVideoExport();
 }
 
 void draw() {
@@ -129,13 +161,44 @@ void draw() {
   mesh.rotate();
   mesh.display();
   
+  // If recording has been activated
+  if (isRecording) {
+     try {
+       // Save current frame
+       videoExport.saveFrame();
+       // Show duration of movie
+       recorderSampleTime = millis();
+       if (recorderSampleTime > recorderNextSampleTime) {
+         recordingProgress();
+         recorderNextSampleTime = recorderSampleTime + 1000;
+       }
+     } // If an error is raised:
+     catch (Error error) {
+       // Print it but keep sketch running
+       error.printStackTrace();
+     }
+  }
+  
+  // If user has choose to see the controls
   if (showControls) {
+    // Call this method to keep the 3D camera from
+    // affecting the 2D display of the GUI.
     camera.beginHUD();
-    // 2D Code here
-    audioIndicator.setValue(rms.analyze()); // visualize audio level
-    try { gui.draw(); }
-    catch (Exception e) { e.printStackTrace(); }
-    
+    // ----------------
+    //  2D FIX ENABLED
+    // ----------------
+    // visualize audio level
+    audioIndicator.setValue(rms.analyze());
+    try {
+      // Draw GUI
+      gui.draw(); 
+    }
+    catch (Exception e) {
+      e.printStackTrace(); 
+    }
+    // -----------------
+    //  2D FIX DISABLED
+    // -----------------
     camera.endHUD();
   }
 }

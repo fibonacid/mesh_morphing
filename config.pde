@@ -8,12 +8,14 @@ void loadConfig() {
     _height_ = config.getInt("height");
     _eco_ = config.getBoolean("eco");
     _texture_ = config.getString("texture");
-    println("config file loaded succesfully");
+    _export_filename_ = config.getString("export_filename");
+    _export_quality_ = config.getString("export_quality");
+    println("Configuration file loaded succesfully\n");
   } catch (NullPointerException e) {
     JSONObject json = freshConfig();
     saveJSONObject(json, "config/settings.json");  
     println("Created new config file with default values");
-    println("find me in config/settings.json");
+    println("\tfind me in config/settings.json\n");
   } catch (Exception e) {
     e.printStackTrace();
   }
@@ -28,4 +30,14 @@ JSONObject freshConfig() {
     json.setString("texture", DEFAULT_TEXTURE);
     saveJSONObject(json, "config/settings.json");  
     return json;
+}
+
+void loadEnvironment() {
+  try {
+    ENV = loadJSONObject("env.json");
+    ENV_FORGET_FFMPEG = ENV.getBoolean("FORGET_FFMPEG") ? ENV.getBoolean("FORGET_FFMPEG") : true;
+    ENV_FFMPEG_PATH = ENV.getString("FFMPEG_PATH");
+  } catch (NullPointerException e) {
+    e.printStackTrace();
+  }
 }
