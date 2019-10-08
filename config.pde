@@ -36,6 +36,7 @@ void loadEnvironment() {
   try {
     ENV = loadJSONObject("env.json");
     ENV_FORGET_FFMPEG = ENV.getBoolean("FORGET_FFMPEG") ? ENV.getBoolean("FORGET_FFMPEG") : true;
+    ENV_FFMPEG_PATH = ENV.getString("FFMPEG_PATH");
   } catch (NullPointerException e) {
     e.printStackTrace();
   }

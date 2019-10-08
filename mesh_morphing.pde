@@ -20,6 +20,7 @@ JSONObject config;
 /* Environment */
 JSONObject ENV;
 boolean ENV_FORGET_FFMPEG;
+String ENV_FFMPEG_PATH;
 
 /* Session variables:
  * This variables can be overwritten through the file config/settings.json. */
