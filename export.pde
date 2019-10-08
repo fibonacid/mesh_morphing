@@ -6,6 +6,22 @@ void startRecording() {
  LocalDateTime now = LocalDateTime.now();
  String timestamp = fileDTF.format(now);
  String path = exportDir + _export_filename_ + timestamp + ".mp4";
+ // Create file
+ File file = new File(path);
+ 
+ // Make sure the file is created
+ try {
+   if (file.createNewFile()) {
+      println("File", path, "successfully created!"); 
+   } else {
+      
+      println("File", path, "already exists."); 
+   }
+ }
+ catch(Exception e) {
+   e.printStackTrace();
+ }
+ 
  videoExport.setMovieFileName(path);
  isRecording = true;
  videoExport.startMovie();
