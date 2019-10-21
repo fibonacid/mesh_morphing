@@ -46,7 +46,7 @@ class OrbitingLamp extends Orbiter {
   
    color lightColor;            // Color of the light
    color currentColor;          // Calculated color value of the light
-   float stroboFreq = 0.25;     // Frequency of the strobo behaviour
+   float stroboFreq = 0.1;     // Frequency of the strobo behaviour
    float angle = PI/4;          // Angle of the spotlights cone
    
    /**
