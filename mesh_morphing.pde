@@ -38,7 +38,7 @@ String  _texture_            = DEFAULT_TEXTURE;
 boolean showControls = true;       // GUI visibility 
 Line lightIntensity;               // Brightness of the 3D scene
 float sceneClock = 0;              // Master clock of the scene
-float sceneClockSpeed = 0.1;       // Time scaling factor of the master clock
+float sceneClockSpeed = 0.25;       // Time scaling factor of the master clock
 
 /* 3D Scene */
 PeasyCam camera;                   // Camera controllable through the mouse
@@ -99,6 +99,9 @@ void settings() {
 /** */
 void setup() {
   
+  // Set framerate
+  frameRate(60);
+  
   // Initialize Scene
   mesh = new Mesh();
   createLamps(); // find me below
@@ -144,7 +147,7 @@ void draw() {
 
   background(0);
 
-  sceneClock = millis() * sceneClockSpeed; // set global clock
+  sceneClock = frameCount * sceneClockSpeed; // set global clock
   
   float b = 255*lightIntensity.value;
   ambientLight(b,b,b);
