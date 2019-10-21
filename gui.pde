@@ -71,7 +71,7 @@ void createGUI() {
     
   fragNoiseAmountSlider = gui.addSlider("fragment_noise_amount")
     .setLabel("FRAGMENT NOISE AMOUNT")
-    .setRange(0.0, 1.0)
+    .setRange(0.0, 1.2)
     .setValue(mesh.vertNoiseAmount.value)
     .setSize(sliderSize[0], sliderSize[1])
     .setPosition(left, top+sliderSize[1]*4);
