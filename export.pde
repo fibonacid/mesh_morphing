@@ -57,6 +57,17 @@ void stopRecording() {
  * ==================
  */
 void setupVideoExport() {
+  // Set quality of exports
+  switch(_export_quality_) {
+      case "high":
+        videoExport.setQuality(70, 192);
+        break;
+      case "standard":
+        videoExport.setQuality(70, 192);
+        break;
+  }
+  // Export framerate should always match the window one.
+  videoExport.setFrameRate(frameRate);
   // If last session had a problem with ffmpeg bin file
   if (ENV_FORGET_FFMPEG) {
     // Make videoExport ask again for it
