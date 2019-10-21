@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
  *  author:        Lorenzo Rivosecchi                                                         *
  *  title:         mesh_morphing                                                              *
  *  description:   An interactive 3D scene with a morphing sphere.                            *
- *  version:       0.2.1                                                                      *
+ *  version:       0.2.2                                                                      *
  *  ----------------------------------------------------------------------------------------- */
 
 /* Configuration file */
