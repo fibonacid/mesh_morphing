@@ -251,6 +251,6 @@ void createLamps() {
     lamps = new OrbitingLamp[3];
   }
   for (int i = 0; i < lamps.length; i++) {
-    lamps[i] = new OrbitingLamp(mesh.position, color(255, 0, 0));
+    lamps[i] = new OrbitingLamp(mesh.position, color(255, 255, 255));
   }
 }
