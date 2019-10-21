@@ -2,7 +2,7 @@ class Mesh {
 
   private PShape shape;                
   private final int SD_VERTEX_AMOUNT = 30;      // Number of vertexes for a standard definition shape 
-  private final int HD_VERTEX_AMOUNT = 150;     // Number of vertexes for a high definition shape 
+  private final int HD_VERTEX_AMOUNT = 500;     // Number of vertexes for a high definition shape 
   
   private PVector position;            // Position of the shape
   private PVector rotation;            // Rotation of the shape
